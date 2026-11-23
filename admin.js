@@ -391,7 +391,28 @@
       'color:#fff;padding:11px 18px;border-radius:12px;font-size:13.5px;font-weight:600;box-shadow:0 12px 30px rgba(0,0,0,.3);',
       'transition:opacity .35s,transform .35s;max-width:88vw;text-align:center}',
       '.ac-toast.ac-out{opacity:0;transform:translateX(-50%) translateY(10px)}',
-      '@media(max-width:640px){#acBar{padding:8px}#acBar button{padding:9px 12px;font-size:12.5px}#acBar .ac-hint{display:none}}'
+      /* --- адаптив панели администрирования --- */
+      '@media(max-width:900px){#acBar .ac-hint{display:none}}',
+      '@media(max-width:640px){',
+      '#acBar{padding:8px 8px calc(8px + env(safe-area-inset-bottom));gap:6px}',
+      '#acBar button{padding:10px 12px;font-size:12.5px;min-height:40px}',
+      '#acBar .ac-hint{display:none}',
+      '#acAdminBtn{right:12px;bottom:calc(12px + env(safe-area-inset-bottom));width:48px;height:48px}',
+      'body.ac-editing #acAdminBtn{bottom:calc(70px + env(safe-area-inset-bottom))}',
+      'body.ac-editing{padding-bottom:64px}',
+      '.ac-modal{padding:0;align-items:flex-end}',
+      '.ac-modal .ac-box{max-width:100%;border-radius:20px 20px 0 0;max-height:92vh;max-height:92dvh;',
+      'padding:20px 16px calc(20px + env(safe-area-inset-bottom))}',
+      '.ac-row button{min-width:100%}',
+      '.ac-ctl button,.ac-blk button{width:32px;height:32px;font-size:14px}',
+      '.ac-toast{bottom:calc(84px + env(safe-area-inset-bottom));font-size:13px;max-width:92vw}',
+      '.ac-f input,.ac-f textarea{font-size:16px}',
+      '}',
+      '@media(max-width:420px){',
+      '#acBar button{padding:9px 10px;font-size:12px}',
+      '.ac-modal .ac-box h3{font-size:17px}',
+      '.ac-ctl,.ac-blk{padding:3px;gap:3px}',
+      '}'
     ].join('');
     var st = document.createElement('style');
     st.id = 'acStyle';
