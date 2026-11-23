@@ -174,7 +174,7 @@
   /* =========================== ТЕКСТЫ =========================== */
   var ALLOWED = { B: 1, I: 1, EM: 1, STRONG: 1, SMALL: 1, SPAN: 1, A: 1, BR: 1, SUP: 1, U: 1 };
   var EXCL = '.cards,.calc-box,.ac-card,.hero-visual,.logo,.nav,.brand-badge,.unit,.snow,.ic,.dot,' +
-             '.rev-stars,.pill,.burger,.btn,.ac-tn,.ac-ctl,.ac-blk,script,style,form,input,select,textarea,button,svg,nav';
+             '.rev-stars,.pill,.burger,.btn,.ac-tn,.ac-ctl,.ac-blk,script,style,input,select,textarea,button,svg,nav';
   function isEditable(el) {
     if (!el || el.nodeType !== 1) return false;
     if (el.closest(EXCL)) return false;
