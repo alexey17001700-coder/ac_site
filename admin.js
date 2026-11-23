@@ -478,6 +478,7 @@
     bar.innerHTML =
       '<button type="button" class="ac-live" data-a="view">👁 Просмотр</button>' +
       '<button type="button" data-a="save">💾 Сохранить</button>' +
+      '<button type="button" data-a="pub">🚀 Опубликовать на сайте</button>' +
       '<button type="button" data-a="cards">➕ Добавить модель</button>' +
       '<button type="button" data-a="set">⚙ Настройки</button>' +
       '<button type="button" data-a="exp">⬇ Скачать JSON</button>' +
