@@ -1182,34 +1182,32 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
   var burger = document.getElementById('burger');
   var links  = document.querySelector('.nav-links');
   if(!burger || !links) return;
+
+  function closeMenu(){
+    links.classList.remove('open');
+    document.body.classList.remove('nav-open');
+    burger.textContent = '☰';
+    burger.setAttribute('aria-expanded','false');
+  }
+  function openMenu(){
+    links.classList.add('open');
+    document.body.classList.add('nav-open');
+    burger.textContent = '✕';
+    burger.setAttribute('aria-expanded','true');
+  }
+
+  burger.setAttribute('aria-expanded','false');
   burger.addEventListener('click', function(){
-    var open = links.style.display === 'flex';
-    if(open){
-      links.style.display = 'none';
-      burger.textContent = '☰';
-    } else {
-      links.style.display = 'flex';
-      links.style.position = 'absolute';
-      links.style.top = '72px';
-      links.style.left = '0';
-      links.style.right = '0';
-      links.style.flexDirection = 'column';
-      links.style.background = '#fff';
-      links.style.padding = '18px 20px';
-      links.style.gap = '14px';
-      links.style.borderBottom = '1px solid #d7e8f5';
-      links.style.boxShadow = '0 12px 30px rgba(10,60,110,.12)';
-      burger.textContent = '✕';
-    }
+    if(links.classList.contains('open')) closeMenu(); else openMenu();
   });
-  links.querySelectorAll('a').forEach(function(a){
-    a.addEventListener('click', function(){
-      if(window.innerWidth <= 980){
-        links.style.display = 'none';
-        burger.textContent = '☰';
-      }
-    });
+  links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+  document.addEventListener('click', function(e){
+    if(!links.classList.contains('open')) return;
+    if(links.contains(e.target) || burger.contains(e.target)) return;
+    closeMenu();
   });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeMenu(); });
+  window.addEventListener('resize', function(){ if(window.innerWidth > 980) closeMenu(); });
 })();
 </script>
 </body>
