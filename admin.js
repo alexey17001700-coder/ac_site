@@ -534,6 +534,34 @@
   });
   function collapseFAQFix() { /* заглушка для сохранения раскладки */ }
 
+  /* -- вопросы FAQ: текстом из модалки (внутри <button> браузер не даёт печатать) -- */
+  document.addEventListener('click', function (e) {
+    if (!editing) return;
+    var b = e.target.closest ? e.target.closest('.faq-q') : null;
+    if (!b) return;
+    e.preventDefault(); e.stopPropagation();
+    var sp = b.querySelector('.ac-tn');
+    var cur = sp ? sp.textContent : clean(b.textContent);
+    var w = modal('Текст вопроса', 'Вопрос в разделе «Частые вопросы».',
+      '<div class="ac-f"><label>Вопрос</label><input id="qText" value="' + esc(clean(cur)) + '"></div>',
+      '<button type="button" class="ac-b1" data-x="ok">Сохранить</button>' +
+      '<button type="button" class="ac-b2" data-x="no">Отмена</button>');
+    var inp = q('#qText', w);
+    if (inp) setTimeout(function () { inp.focus(); inp.select(); }, 60);
+    w.addEventListener('keydown', function (ev) { if (ev.key === 'Enter') { var okb = q('button[data-x="ok"]', w); if (okb) okb.click(); } });
+    w.addEventListener('click', function (ev) {
+      var btn = ev.target.closest('button[data-x]'); if (!btn) return;
+      if (btn.getAttribute('data-x') === 'no') { w.close(); return; }
+      var v = val(w, 'qText');
+      if (v) {
+        if (sp) sp.textContent = v;
+        else b.insertBefore(document.createTextNode(v), b.firstChild);
+        saveTexts(); saveData(); toast('✓ Вопрос сохранён');
+      }
+      w.close();
+    });
+  }, true);
+
   /* -- редактирование текста: автосохранение -- */
   var saveTimer = null;
   document.addEventListener('input', function (e) {
