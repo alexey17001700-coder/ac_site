@@ -285,7 +285,9 @@
       phone: digits || '79991234567',
       phoneText: clean(nm) || '+7 (999) 123-45-67',
       email: mail ? mail.getAttribute('href').replace('mailto:', '') : 'info@climatepro.ru',
-      whatsapp: digits || '79991234567'
+      whatsapp: digits || '79991234567',
+      ghRepo: 'alexey17001700-coder/ac_site',
+      ghBranch: 'main'
     };
   }
   function settings() {
