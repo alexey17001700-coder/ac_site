@@ -362,6 +362,7 @@
       '.ac-ctl button:hover,.ac-blk button:hover{background:#0a84ff}',
       '.ac-ctl button.ac-danger:hover,.ac-blk button.ac-danger:hover{background:#ef4444}',
       '.ac-ctl button.ac-on,.ac-blk button.ac-on{background:#22d3ee;color:#062a45}',
+      'body.ac-editing .card{position:relative}',
       'body.ac-editing .card[data-hidden="1"]{opacity:.5;outline:2px dashed #ef4444;outline-offset:-2px}',
       'body:not(.ac-editing) .card[data-hidden="1"]{display:none}',
       'body:not(.ac-editing) .ac-hidden{display:none!important}',
