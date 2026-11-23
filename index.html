@@ -1063,8 +1063,9 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
              + 'Телефон: ' + encodeURIComponent(phone) + '%0A'
              + 'Площадь: ' + encodeURIComponent(areaV) + '%0A'
              + 'Комментарий: ' + encodeURIComponent(comm || '—');
-    /* Открываем WhatsApp с готовым сообщением. Замените номер на свой. */
-    window.open('https://wa.me/79991234567?text=' + text, '_blank');
+    /* Номер WhatsApp берётся из панели администрирования (⚙ Настройки) */
+    var waNum = (window.ACSITE && window.ACSITE.settings && window.ACSITE.settings.whatsapp) || '79991234567';
+    window.open('https://wa.me/' + waNum + '?text=' + text, '_blank');
     ok.classList.add('show');
     form.reset();
     setTimeout(function(){ ok.classList.remove('show'); }, 8000);
