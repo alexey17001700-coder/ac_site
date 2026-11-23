@@ -713,6 +713,66 @@
       '<button type="button" class="ac-b1" data-x="ok">Понятно</button>');
   }
 
+  /* =========================== ПУБЛИКАЦИЯ НА САЙТ =========================== */
+  function ghToken() { try { return localStorage.getItem(K.tok) || ''; } catch (e) { return ''; } }
+  function setGhToken(t) { try { if (t) localStorage.setItem(K.tok, t); else localStorage.removeItem(K.tok); } catch (e) { } }
+  function b64(str) { return btoa(unescape(encodeURIComponent(str))); }
+
+  function openPublish() {
+    var s = settings();
+    var has = !!ghToken();
+    var html =
+      '<div class="ac-f"><label>Репозиторий GitHub (владелец/имя)</label><input id="pRepo" value="' + esc(s.ghRepo || '') + '"></div>' +
+      '<div class="ac-f"><label>Ветка</label><input id="pBranch" value="' + esc(s.ghBranch || 'main') + '"></div>' +
+      '<div class="ac-f"><label>Токен GitHub (хранится только в этом браузере)</label><input id="pTok" type="password" placeholder="' + (has ? 'токен уже сохранён — оставь пустым' : 'ghp_… права Contents: Read and write') + '"></div>' +
+      '<p class="ac-sub" style="margin:0">Публикация запишет файл <b>content.json</b> в репозиторий — правки увидят все посетители сайта. Токен уходит только на api.github.com и в репозиторий не попадает.</p>';
+    var w = modal('Опубликовать правки на сайте', 'Сначала нажми «💾 Сохранить», потом публикуй.', html,
+      '<button type="button" class="ac-b1" data-x="ok">🚀 Опубликовать</button>' +
+      '<button type="button" class="ac-b2" data-x="no">Отмена</button>');
+    w.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-x]'); if (!b) return;
+      if (b.getAttribute('data-x') === 'no') { w.close(); return; }
+      var repo = val(w, 'pRepo'), branch = val(w, 'pBranch') || 'main', tok = val(w, 'pTok');
+      if (tok) setGhToken(tok);
+      if (!ghToken()) { toast('Нужен токен GitHub'); return; }
+      if (!repo) { toast('Укажи репозиторий'); return; }
+      D.settings.ghRepo = repo; D.settings.ghBranch = branch; saveData();
+      doPublish(repo, branch, ghToken(), b);
+    });
+  }
+
+  function doPublish(repo, branch, token, btn) {
+    var body = buildExport();
+    var api = 'https://api.github.com/repos/' + repo + '/contents/content.json';
+    var old = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Публикую…'; }
+    function done(msg) {
+      if (btn) { btn.disabled = false; btn.textContent = old; }
+      toast(msg);
+    }
+    fetch(api + '?ref=' + encodeURIComponent(branch), {
+      headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json' }
+    }).then(function (r) { return r.ok ? r.json() : null; })
+      .catch(function () { return null; })
+      .then(function (cur) {
+        var payload = { message: 'Обновление контента сайта (админка)', content: b64(body), branch: branch };
+        if (cur && cur.sha) payload.sha = cur.sha;
+        return fetch(api, {
+          method: 'PUT',
+          headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      })
+      .then(function (r) {
+        if (r && r.ok) done('✓ Опубликовано! Клиенты увидят через 1–2 минуты');
+        else if (r && r.status === 401) done('Токен неверный или истёк');
+        else if (r && r.status === 403) done('Нет прав: нужен Contents: Read and write');
+        else if (r && r.status === 404) done('Репозиторий или ветка не найдены');
+        else done('Не получилось опубликовать');
+      })
+      .catch(function () { done('Ошибка сети при публикации'); });
+  }
+
   /* =========================== ЭКСПОРТ / ИМПОРТ =========================== */
   function buildExport() {
     saveTexts();
