@@ -685,11 +685,13 @@
         try { localStorage.removeItem(K.data); localStorage.removeItem(K.base); } catch (er) { }
         location.reload(); return;
       }
+      var keepRepo = D.settings.ghRepo, keepBranch = D.settings.ghBranch;
       D.settings = {
         company: val(w, 'sCompany'), phoneText: val(w, 'sPhoneText'),
         phone: val(w, 'sPhone').replace(/[^\d+]/g, ''),
         whatsapp: val(w, 'sWa').replace(/[^\d]/g, ''),
-        email: val(w, 'sMail'), title: val(w, 'sTitle')
+        email: val(w, 'sMail'), title: val(w, 'sTitle'),
+        ghRepo: keepRepo, ghBranch: keepBranch
       };
       var p = val(w, 'sPass');
       if (p) { try { localStorage.setItem(K.pass, hsh(p)); } catch (er) { } }
