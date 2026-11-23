@@ -22,7 +22,7 @@
   function hsh(s) { var h = 5381, i = 0; for (; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0; return h.toString(16); }
   function uid() { return 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
 
-  var K = { data: 'acsite_data_v1', base: 'acsite_base_v1', pass: 'acsite_pass_v1', sess: 'acsite_sess_v1' };
+  var K = { data: 'acsite_data_v1', base: 'acsite_base_v1', pass: 'acsite_pass_v1', sess: 'acsite_sess_v1', tok: 'acsite_tok_v1' };
   var DEFAULT_PASS = 'climatepro';
   var REMOTE_URL = 'content.json';
 
