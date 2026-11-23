@@ -193,7 +193,7 @@
     prices: ['.price-row'],
     reviews: ['.rev-text', '.rev-author'],
     faq: ['.faq-a'],
-    contact: ['.contact-grid > div:first-child', '.form-card h3', '.form-card .sub'],
+    contact: ['.contact-grid > div:first-child', '.form-card'],
     footer: ['.foot-grid', '.foot-bottom'],
     catalog: []
   };
