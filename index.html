@@ -1223,6 +1223,32 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeMenu(); });
   window.addEventListener('resize', function(){ if(window.innerWidth > 980) closeMenu(); });
 })();
+
+/* ---------- Лёгкий снежок ---------- */
+(function(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var layer = document.createElement('div');
+  layer.id = 'snow';
+  layer.setAttribute('aria-hidden','true');
+  document.body.appendChild(layer);
+
+  var chars = ['❄','❅','❆','•'];
+  var count = window.innerWidth < 640 ? 16 : (window.innerWidth < 1100 ? 26 : 36);
+  var frag = document.createDocumentFragment();
+
+  for(var i = 0; i < count; i++){
+    var f = document.createElement('i');
+    f.textContent = chars[Math.floor(Math.random() * chars.length)];
+    f.style.left = (Math.random() * 100).toFixed(2) + '%';
+    f.style.fontSize = (8 + Math.random() * 14).toFixed(1) + 'px';
+    f.style.opacity = (0.3 + Math.random() * 0.5).toFixed(2);
+    f.style.animationDuration = (8 + Math.random() * 10).toFixed(1) + 's';
+    f.style.animationDelay = (-Math.random() * 14).toFixed(1) + 's';
+    f.style.setProperty('--dx', (Math.random() * 90 - 45).toFixed(0) + 'px');
+    frag.appendChild(f);
+  }
+  layer.appendChild(frag);
+})();
 </script>
 </body>
 </html>
