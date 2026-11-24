@@ -1262,7 +1262,10 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
     }
     ok.classList.add('show');
     form.reset();
-    setTimeout(function(){ ok.classList.remove('show'); }, 8000);
+    setTimeout(function(){
+      ok.classList.remove('show');
+      ok.textContent = '✓ Заявка принята! Мы свяжемся с вами в течение 15 минут.';
+    }, 8000);
   });
 })();
 
