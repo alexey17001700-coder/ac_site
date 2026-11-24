@@ -43,11 +43,12 @@
   .btn:active{transform:scale(.97)}
   /* ===== ЖЕЛЕЗНЫЕ (МЕТАЛЛИЧЕСКИЕ) КНОПКИ — ЗЕЛЁНЫЙ ОТТЕНОК ===== */
   .btn-primary{
-    background:linear-gradient(180deg,#eafaf0 0%,#b6e6c9 18%,#7fcf9e 50%,#5cbd82 52%,#9adcb4 100%);
+    background:linear-gradient(180deg,rgba(234,250,240,.62) 0%,rgba(182,230,201,.58) 18%,rgba(127,207,158,.55) 50%,rgba(92,189,130,.55) 52%,rgba(154,220,180,.58) 100%);
     color:#0a3d22;text-shadow:0 1px 0 rgba(255,255,255,.65);
-    border:1px solid #4a9d6b;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -2px 4px rgba(20,90,50,.35),0 10px 26px rgba(30,140,80,.35);
+    border:1px solid rgba(74,157,107,.75);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -2px 4px rgba(20,90,50,.25),0 10px 26px rgba(30,140,80,.25);
     position:relative;overflow:hidden;
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   }
   .btn-primary::after{
     content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
