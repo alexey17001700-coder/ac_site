@@ -64,7 +64,14 @@
     background:linear-gradient(120deg,#0b8f4d,#22c55e 55%,#6ee7a0);
     -webkit-background-clip:text;background-clip:text;
     -webkit-text-fill-color:transparent;color:transparent;font-weight:800;
+    filter:drop-shadow(0 0 7px rgba(34,197,94,.45)) drop-shadow(0 0 18px rgba(52,211,153,.28));
+    animation:logoGlow 3.4s ease-in-out infinite;
   }
+  @keyframes logoGlow{
+    0%,100%{filter:drop-shadow(0 0 6px rgba(34,197,94,.40)) drop-shadow(0 0 16px rgba(52,211,153,.22))}
+    50%{filter:drop-shadow(0 0 12px rgba(34,197,94,.70)) drop-shadow(0 0 26px rgba(52,211,153,.42))}
+  }
+  @media(prefers-reduced-motion:reduce){.logo-name{animation:none}}
   .logo small{display:block;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.4px;text-transform:uppercase;-webkit-text-fill-color:var(--muted)}
   .nav-links{display:flex;gap:22px;margin-left:auto;font-size:14.5px;font-weight:600;color:var(--deep2)}
   .nav-links a{position:relative;padding:4px 0;transition:color .2s}
