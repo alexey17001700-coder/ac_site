@@ -1230,6 +1230,7 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
     var phone = document.getElementById('fphone').value.trim();
     var areaV = document.getElementById('farea').value;
     var comm  = document.getElementById('fcomment').value.trim();
+    var mes   = document.getElementById('fmessenger').value;
     if(!name || !phone){
       alert('Пожалуйста, укажите имя и телефон.');
       return;
@@ -1239,9 +1240,26 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
              + 'Телефон: ' + encodeURIComponent(phone) + '%0A'
              + 'Площадь: ' + encodeURIComponent(areaV) + '%0A'
              + 'Комментарий: ' + encodeURIComponent(comm || '—');
-    /* Номер WhatsApp берётся из панели администрирования (⚙ Настройки) */
-    var waNum = (window.ACSITE && window.ACSITE.settings && window.ACSITE.settings.whatsapp) || '79991234567';
-    window.open('https://wa.me/' + waNum + '?text=' + text, '_blank');
+    /* Контакты: телефон, WhatsApp и Telegram */
+    var PHONE = '79212636626';
+    var TG    = 'https://t.me/I_am_mr_Belov';
+    var waNum = (window.ACSITE && window.ACSITE.settings && window.ACSITE.settings.whatsapp) || PHONE;
+
+    if(mes === 'telegram'){
+      /* Telegram не принимает текст в ссылке — копируем заявку в буфер и открываем чат */
+      var plain = decodeURIComponent(text.replace(/%0A/g, '\n'));
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(plain).catch(function(){});
+      }
+      window.open(TG, '_blank');
+      ok.textContent = '✓ Открыли Telegram. Заявка скопирована — вставьте её в чат.';
+    }else if(mes === 'call'){
+      window.location.href = 'tel:+' + PHONE;
+      ok.textContent = '✓ Звоним вам! Если не дозвонились — наберите +7 (921) 263-66-26.';
+    }else{
+      window.open('https://wa.me/' + waNum + '?text=' + text, '_blank');
+      ok.textContent = '✓ Заявка принята! Мы свяжемся с вами в течение 15 минут.';
+    }
     ok.classList.add('show');
     form.reset();
     setTimeout(function(){ ok.classList.remove('show'); }, 8000);
