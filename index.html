@@ -379,6 +379,19 @@
   .reveal.in{opacity:1;transform:none}
   @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
+  /* ===== SNOWFALL ===== */
+  #snow{position:fixed;inset:0;pointer-events:none;z-index:9998;overflow:hidden}
+  #snow i{
+    position:absolute;top:-6vh;color:#fff;opacity:.7;line-height:1;
+    text-shadow:0 0 7px rgba(160,220,255,.95),0 0 2px rgba(255,255,255,.9);
+    animation:fall linear infinite;will-change:transform;
+  }
+  @keyframes fall{
+    0%{transform:translate3d(0,-10vh,0) rotate(0deg)}
+    100%{transform:translate3d(var(--dx,20px),112vh,0) rotate(360deg)}
+  }
+  @media(prefers-reduced-motion:reduce){#snow{display:none}}
+
   /* ===== RESPONSIVE ===== */
 
   /* --- Большие мониторы --- */
