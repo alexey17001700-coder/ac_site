@@ -1237,10 +1237,19 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
   var count = window.innerWidth < 640 ? 40 : (window.innerWidth < 1100 ? 70 : 110);
   var frag = document.createDocumentFragment();
 
+  /* Позиция по горизонтали: центр экрана оставляем почти пустым,
+     чтобы снег не мешал чтению. 90% снежинок — по краям. */
+  function snowLeft(){
+    var r = Math.random();
+    if(r < 0.45) return Math.random() * 30;          /* левый край 0–30% */
+    if(r < 0.90) return 70 + Math.random() * 30;     /* правый край 70–100% */
+    return 30 + Math.random() * 40;                  /* центр — редко */
+  }
+
   for(var i = 0; i < count; i++){
     var f = document.createElement('i');
     f.textContent = chars[Math.floor(Math.random() * chars.length)];
-    f.style.left = (Math.random() * 100).toFixed(2) + '%';
+    f.style.left = snowLeft().toFixed(2) + '%';
     f.style.fontSize = (8 + Math.random() * 26).toFixed(1) + 'px';
     f.style.color = colors[Math.floor(Math.random() * colors.length)];
     f.style.opacity = (0.35 + Math.random() * 0.6).toFixed(2);
