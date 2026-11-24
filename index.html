@@ -41,12 +41,40 @@
     white-space:nowrap;
   }
   .btn:active{transform:scale(.97)}
-  .btn-primary{background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;box-shadow:0 10px 26px rgba(10,132,255,.38)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(10,132,255,.48)}
-  .btn-ghost{background:#fff;color:var(--deep);border:2px solid var(--line)}
-  .btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
-  .btn-white{background:#fff;color:var(--blue-d);box-shadow:0 10px 26px rgba(0,0,0,.16)}
-  .btn-white:hover{transform:translateY(-2px)}
+  /* ===== ЖЕЛЕЗНЫЕ (МЕТАЛЛИЧЕСКИЕ) КНОПКИ ===== */
+  .btn-primary{
+    background:linear-gradient(180deg,#f4f7fa 0%,#d3dbe3 18%,#aab6c2 50%,#8d9aa7 52%,#b9c4cf 100%);
+    color:#1c2b3a;text-shadow:0 1px 0 rgba(255,255,255,.75);
+    border:1px solid #7c8a98;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -2px 4px rgba(60,75,90,.35),0 10px 26px rgba(70,90,110,.35);
+    position:relative;overflow:hidden;
+  }
+  .btn-primary::after{
+    content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+    background:repeating-linear-gradient(90deg,rgba(255,255,255,.16) 0 1px,transparent 1px 3px);
+    opacity:.5;
+  }
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    background:linear-gradient(180deg,#ffffff 0%,#e0e7ee 18%,#b8c4d0 50%,#9aa8b6 52%,#c6d0da 100%);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -2px 4px rgba(60,75,90,.35),0 16px 34px rgba(70,90,110,.45);
+  }
+  .btn-ghost{
+    background:linear-gradient(180deg,#eef2f6,#cdd6df);color:#1c2b3a;
+    border:1px solid #8d9aa7;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.85),inset 0 -2px 4px rgba(60,75,90,.25);
+  }
+  .btn-ghost:hover{border-color:#5f6d7b;color:#0d2438;background:linear-gradient(180deg,#ffffff,#dbe3ea)}
+  .btn-white{
+    background:linear-gradient(180deg,#f4f7fa 0%,#d3dbe3 18%,#aab6c2 50%,#8d9aa7 52%,#b9c4cf 100%);
+    color:#1c2b3a;text-shadow:0 1px 0 rgba(255,255,255,.75);
+    border:1px solid #7c8a98;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -2px 4px rgba(60,75,90,.35),0 10px 26px rgba(0,0,0,.22);
+  }
+  .btn-white:hover{
+    transform:translateY(-2px);
+    background:linear-gradient(180deg,#ffffff 0%,#e0e7ee 18%,#b8c4d0 50%,#9aa8b6 52%,#c6d0da 100%);
+  }
 
   /* ===== HEADER ===== */
   header{
