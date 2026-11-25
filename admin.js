@@ -705,6 +705,17 @@
       '<div class="ac-f"><label>Характеристики (каждая строка — отдельный пункт)</label><textarea id="cSpecs">' + esc((c.specs || []).join('\n')) + '</textarea></div>' +
       '<div class="ac-f"><label>Цена</label><input id="cPrice" value="' + esc(c.price) + '"></div>' +
       '<div class="ac-f"><label>Подпись под ценой</label><input id="cNote" value="' + esc(c.note) + '"></div>' +
+      '<div class="ac-f"><label>📷 Фото сплит-системы</label>' +
+        '<div class="ac-photo">' +
+          '<div class="ac-photo-prev" id="cPrev"></div>' +
+          '<div class="ac-photo-btns">' +
+            '<label class="ac-photo-file">📁 Выбрать фото с телефона / компьютера<input type="file" id="cFile" accept="image/*"></label>' +
+            '<button type="button" class="ac-photo-rm" data-x="rmphoto">🗑 Убрать фото</button>' +
+          '</div>' +
+          '<input type="text" id="cPhotoUrl" placeholder="…или вставьте ссылку на фото (https://…)" value="' + (/^data:/.test(c.photo || '') ? '' : esc(c.photo || '')) + '">' +
+          '<p class="ac-photo-hint">Фото подгоняется автоматически (до 900 px, JPEG). Если фото много — лучше вставлять ссылку, так сайт грузится быстрее.</p>' +
+        '</div>' +
+      '</div>' +
       '<div class="ac-f"><label class="ac-chk"><input type="checkbox" id="cHide"' + (c.hidden ? ' checked' : '') + '> Скрыть эту модель с сайта</label></div>';
     var w = modal(adding ? 'Новая модель' : 'Модель: ' + clean(c.title),
       'Заполните поля и нажмите «Сохранить». Позиция модели меняется кнопками ▲▼ в каталоге.', html,
