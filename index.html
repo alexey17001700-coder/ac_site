@@ -213,6 +213,16 @@
   }
   .hero.gta .gta-palm.l{left:-14px;transform:scaleX(-1)}
   .hero.gta .gta-palm.r{right:-14px}
+  /* --- Герои GTA 6: силуэты по краям, не мешают контенту --- */
+  .hero.gta .gta-hero{
+    position:absolute;bottom:0;z-index:1;pointer-events:none;
+    height:min(56%,400px);width:auto;
+    fill:#24083f;opacity:.4;
+    filter:blur(.6px) drop-shadow(0 0 26px rgba(255,45,120,.4));
+  }
+  .hero.gta .gta-hero.l{left:1.5%;transform:scaleX(-1)}
+  .hero.gta .gta-hero.r{right:1.5%;opacity:.34}
+  @media(max-width:980px){.hero.gta .gta-hero{display:none}}
   .hero.gta .gta-vi{
     position:absolute;top:16px;right:20px;z-index:5;pointer-events:none;
     font-size:clamp(30px,5vw,56px);font-weight:900;font-style:italic;color:#fff;
