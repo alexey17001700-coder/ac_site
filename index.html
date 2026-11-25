@@ -251,18 +251,69 @@
   }
   .hero.gta .btn-ghost{background:rgba(255,255,255,.18);color:#fff;border-color:rgba(255,255,255,.55)}
   .hero.gta .btn-ghost:hover{background:rgba(255,255,255,.32);color:#fff}
-  /* переключатель обложки */
-  .cover-switch{
-    position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:6px;
-    background:rgba(13,36,56,.86);border:1px solid rgba(255,255,255,.22);border-radius:100px;
-    padding:6px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  /* --- GTA-режим: перекрашиваем и остальную страницу, чтобы переключение было видно --- */
+  body.cover-gta header{background:rgba(43,11,74,.8);border-bottom-color:rgba(255,120,200,.35)}
+  body.cover-gta .logo small{color:#ffd9ee;-webkit-text-fill-color:#ffd9ee}
+  body.cover-gta .nav-links a{color:#ffe9f6}
+  body.cover-gta .nav-links a:hover{color:#ffd07a}
+  body.cover-gta .nav-phone{color:#fff}
+  body.cover-gta .nav-phone span{color:#ffd9ee}
+  body.cover-gta .burger{color:#fff;border-color:rgba(255,255,255,.35)}
+  body.cover-gta .adv-item,
+  body.cover-gta .card,
+  body.cover-gta .svc,
+  body.cover-gta .rev,
+  body.cover-gta .faq-item,
+  body.cover-gta .price-table,
+  body.cover-gta .form-card,
+  body.cover-gta .ci{
+    background:rgba(30,8,52,.6);border-color:rgba(255,120,200,.35);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   }
-  .cover-switch button{padding:8px 14px;border-radius:100px;font-size:12.5px;font-weight:800;color:#cfe6f5;transition:background .2s,color .2s}
+  body.cover-gta h2,body.cover-gta h3,body.cover-gta .card-body h3,body.cover-gta .svc h3,
+  body.cover-gta .step h3,body.cover-gta .price-row .name,body.cover-gta .adv-item b,
+  body.cover-gta .rev-author b,body.cover-gta .faq-q,body.cover-gta .form-card h3{color:#fff}
+  body.cover-gta .card-specs li,body.cover-gta .svc p,body.cover-gta .step p,
+  body.cover-gta .rev-text,body.cover-gta .faq-a p,body.cover-gta .sec-head p,
+  body.cover-gta .price-row .name small,body.cover-gta .adv-item p,
+  body.cover-gta .ci a,body.cover-gta .ci span,body.cover-gta .contact .lead{color:#ffd9ee}
+  body.cover-gta .sec-tag{background:rgba(255,45,120,.3);color:#ffd9ee}
+  body.cover-gta .price-row{border-bottom-color:rgba(255,255,255,.14)}
+  body.cover-gta .price-row:nth-child(odd){background:rgba(255,255,255,.06)}
+  body.cover-gta .card-price{border-top-color:rgba(255,255,255,.2)}
+  body.cover-gta .card-price .p{color:#ffe066}
+  body.cover-gta .catalog,body.cover-gta .steps,body.cover-gta .reviews{background:#2b0b4a}
+  body.cover-gta .contact{background:linear-gradient(140deg,#3a0f5e,#7a1d6b)}
+  body.cover-gta .calc{background:linear-gradient(140deg,#2b0b4a,#7a1d6b 70%,#e0457b)}
+  body.cover-gta footer{background:#1a0630}
+  body.cover-gta .f-group label{color:#ffd9ee}
+  body.cover-gta .f-group input,body.cover-gta .f-group textarea,body.cover-gta .f-group select,
+  body.cover-gta .app-opt{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);color:#fff}
+  body.cover-gta .app-opt{color:#ffe9f6}
+  body.cover-gta .app-opt.sel,body.cover-gta .app-opt:has(input:checked){background:rgba(34,197,94,.22);border-color:#22c55e}
+  body.cover-gta .faq-q .ic{background:rgba(255,255,255,.16);color:#fff}
+
+  /* переключатель обложки — поднят выше кнопки админки ⚙ и панели редактора */
+  .cover-switch{
+    position:fixed;right:14px;bottom:74px;z-index:9999;display:flex;align-items:center;gap:6px;
+    background:rgba(13,36,56,.9);border:1px solid rgba(255,255,255,.28);border-radius:100px;
+    padding:6px 8px 6px 12px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    animation:coverPulse 2.6s ease-in-out infinite;
+  }
+  @keyframes coverPulse{
+    0%,100%{box-shadow:0 10px 30px rgba(0,0,0,.4),0 0 0 0 rgba(255,45,120,.55)}
+    50%{box-shadow:0 10px 30px rgba(0,0,0,.4),0 0 0 9px rgba(255,45,120,0)}
+  }
+  @media(prefers-reduced-motion:reduce){.cover-switch{animation:none}}
+  .cover-switch .cover-lbl{font-size:10.5px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:#9dc2dd}
+  .cover-switch button{padding:8px 14px;border-radius:100px;font-size:12.5px;font-weight:800;color:#cfe6f5;transition:background .2s,color .2s;cursor:pointer}
   .cover-switch button.on{background:linear-gradient(135deg,#ff2d78,#ff8a3d);color:#fff}
+  body.ac-editing .cover-switch{bottom:134px}
   @media(max-width:640px){
-    .cover-switch{right:10px;bottom:10px;padding:5px}
+    .cover-switch{right:10px;bottom:calc(74px + env(safe-area-inset-bottom));padding:5px 6px 5px 10px}
+    .cover-switch .cover-lbl{display:none}
     .cover-switch button{padding:7px 11px;font-size:11.5px}
+    body.ac-editing .cover-switch{bottom:calc(132px + env(safe-area-inset-bottom))}
   }
 
   /* ===== ADVANTAGES ===== */
