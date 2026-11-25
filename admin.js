@@ -691,7 +691,7 @@
     } catch (e) { return false; }
   }
 
-  function openCard(u) {
+  function openCard(u, focusPhoto) {
     var adding = !u;
     var c;
     if (adding) {
