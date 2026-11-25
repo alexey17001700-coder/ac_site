@@ -1541,21 +1541,35 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
   var box  = document.getElementById('coverSwitch');
   if(!hero || !box) return;
   var KEY = 'acsite_cover';
-  function apply(mode){
+
+  function apply(mode, save){
     var gta = (mode === 'gta');
     hero.classList.toggle('gta', gta);
+    document.body.classList.toggle('cover-gta', gta);
     box.querySelectorAll('button').forEach(function(b){
       b.classList.toggle('on', b.getAttribute('data-cover') === mode);
     });
-    try{ localStorage.setItem(KEY, mode); }catch(e){}
+    if(save !== false){ try{ localStorage.setItem(KEY, mode); }catch(e){} }
   }
+
+  /* клик по кнопкам (и по всей плашке — на случай промаха пальцем) */
   box.addEventListener('click', function(e){
     var b = e.target.closest ? e.target.closest('button[data-cover]') : null;
-    if(b) apply(b.getAttribute('data-cover'));
+    if(b){ apply(b.getAttribute('data-cover')); return; }
+    /* клик по подписи «Обложка» — переключаем на противоположную */
+    apply(hero.classList.contains('gta') ? 'classic' : 'gta');
   });
+
+  /* режим можно задать ссылкой: ?cover=gta */
+  var urlMode = null;
+  try{
+    var m = /[?&]cover=(classic|gta)/i.exec(location.search);
+    if(m) urlMode = m[1].toLowerCase();
+  }catch(e){}
+
   var saved = 'classic';
   try{ saved = localStorage.getItem(KEY) || 'classic'; }catch(e){}
-  apply(saved);
+  apply(urlMode || saved, !urlMode);
 })();
 
 /* ---------- Лёгкий снежок ---------- */
