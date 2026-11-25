@@ -515,6 +515,7 @@
         '<button type="button" data-a="up" title="Выше">▲</button>' +
         '<button type="button" data-a="down" title="Ниже">▼</button>' +
         '<button type="button" data-a="edit" title="Изменить модель">✎</button>' +
+        '<button type="button" data-a="photo" title="Добавить фото сплит-системы">📷</button>' +
         '<button type="button" data-a="dup" title="Дублировать">⧉</button>' +
         '<button type="button" data-a="hide" class="' + (hid ? 'ac-on' : '') + '" title="Скрыть/показать">' + (hid ? '🚫' : '👁') + '</button>' +
         '<button type="button" data-a="del" class="ac-danger" title="Удалить">🗑</button>';
