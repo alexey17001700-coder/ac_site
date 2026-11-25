@@ -1265,7 +1265,8 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
     var phone = document.getElementById('fphone').value.trim();
     var areaV = document.getElementById('farea').value;
     var comm  = document.getElementById('fcomment').value.trim();
-    var mes   = document.getElementById('fmessenger').value;
+    var mesEl = document.querySelector('input[name="fmessenger"]:checked');
+    var mes   = mesEl ? mesEl.value : 'whatsapp';
     if(!name || !phone){
       alert('Пожалуйста, укажите имя и телефон.');
       return;
