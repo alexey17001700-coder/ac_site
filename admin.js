@@ -722,10 +722,39 @@
       (adding ? '' : '<button type="button" class="ac-b3" data-x="del">Удалить</button>') +
       '<button type="button" class="ac-b1" data-x="ok">Сохранить</button>' +
       '<button type="button" class="ac-b2" data-x="no">Отмена</button>');
+
+    /* --- фото --- */
+    var photoVal = c.photo || '';
+    var prev = q('#cPrev', w);
+    function updPrev() {
+      if (!prev) return;
+      prev.innerHTML = photoVal
+        ? '<img src="' + esc(photoVal) + '" alt="Фото">'
+        : '<span class="ac-photo-empty">Фото не выбрано — пока показывается нарисованный блок</span>';
+    }
+    updPrev();
+    var fileInp = q('#cFile', w);
+    if (fileInp) fileInp.addEventListener('change', function () {
+      var f = fileInp.files && fileInp.files[0];
+      if (!f) return;
+      readPhoto(f, function (data) {
+        photoVal = data;
+        var u = q('#cPhotoUrl', w); if (u) u.value = '';
+        updPrev();
+        toast('Фото готово — нажми «Сохранить»');
+      });
+    });
+
     w.addEventListener('click', function (e) {
       var b = e.target.closest('button[data-x]'); if (!b) return;
       var x = b.getAttribute('data-x');
       if (x === 'no') { w.close(); return; }
+      if (x === 'rmphoto') {
+        photoVal = '';
+        var uu = q('#cPhotoUrl', w); if (uu) uu.value = '';
+        updPrev(); toast('Фото убрано');
+        return;
+      }
       if (x === 'del') {
         if (!confirm('Удалить модель?')) return;
         D.cards.splice(cardIndex(c.uid), 1);
