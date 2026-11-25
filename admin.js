@@ -22,6 +22,39 @@
   function hsh(s) { var h = 5381, i = 0; for (; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0; return h.toString(16); }
   function uid() { return 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
 
+  /* ---------------- фото: чтение и сжатие ---------------- */
+  var PHOTO_MAXW = 900;
+  function readPhoto(file, cb) {
+    if (!file) return;
+    if (!/^image\//.test(file.type || '')) { toast('Это не картинка'); return; }
+    var fr = new FileReader();
+    fr.onload = function () {
+      var raw = String(fr.result);
+      var img = new Image();
+      img.onload = function () {
+        try {
+          var w = img.width, h = img.height;
+          if (!w || !h) throw 0;
+          if (w > PHOTO_MAXW) { h = Math.round(h * PHOTO_MAXW / w); w = PHOTO_MAXW; }
+          var cv = document.createElement('canvas');
+          cv.width = w; cv.height = h;
+          var cx = cv.getContext('2d');
+          cx.fillStyle = '#ffffff'; cx.fillRect(0, 0, w, h);
+          cx.drawImage(img, 0, 0, w, h);
+          cb(cv.toDataURL('image/jpeg', 0.78));
+        } catch (e) { cb(raw); }
+      };
+      img.onerror = function () { toast('Не удалось прочитать фото'); };
+      img.src = raw;
+    };
+    fr.readAsDataURL(file);
+  }
+  function photoSizeWarn() {
+    var total = 0;
+    (D.cards || []).forEach(function (c) { if (c && c.photo) total += c.photo.length; });
+    if (total > 3.2 * 1024 * 1024) toast('Фото занимают много места — лучше вставлять ссылки на картинки');
+  }
+
   var K = { data: 'acsite_data_v1', base: 'acsite_base_v1', pass: 'acsite_pass_v1', sess: 'acsite_sess_v1', tok: 'acsite_tok_v1' };
   var DEFAULT_PASS = 'climatepro';
   var REMOTE_URL = 'content.json';
