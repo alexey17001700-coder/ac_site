@@ -1313,6 +1313,24 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
   });
 })();
 
+/* ---------- Выбор приложения для заявки ---------- */
+(function(){
+  var picker = document.getElementById('appPicker');
+  if(!picker) return;
+  function sync(){
+    picker.querySelectorAll('.app-opt').forEach(function(o){
+      var inp = o.querySelector('input');
+      o.classList.toggle('sel', !!(inp && inp.checked));
+    });
+  }
+  picker.addEventListener('change', sync);
+  picker.addEventListener('click', function(e){
+    var opt = e.target.closest ? e.target.closest('.app-opt') : null;
+    if(opt) setTimeout(sync, 0);
+  });
+  sync();
+})();
+
 /* ---------- Burger (mobile menu) ---------- */
 (function(){
   var burger = document.getElementById('burger');
