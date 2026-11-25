@@ -1483,6 +1483,29 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
   window.addEventListener('resize', function(){ if(window.innerWidth > 980) closeMenu(); });
 })();
 
+/* ---------- Переключатель обложки (временный): классика / GTA 6 ---------- */
+(function(){
+  var hero = document.getElementById('hero');
+  var box  = document.getElementById('coverSwitch');
+  if(!hero || !box) return;
+  var KEY = 'acsite_cover';
+  function apply(mode){
+    var gta = (mode === 'gta');
+    hero.classList.toggle('gta', gta);
+    box.querySelectorAll('button').forEach(function(b){
+      b.classList.toggle('on', b.getAttribute('data-cover') === mode);
+    });
+    try{ localStorage.setItem(KEY, mode); }catch(e){}
+  }
+  box.addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('button[data-cover]') : null;
+    if(b) apply(b.getAttribute('data-cover'));
+  });
+  var saved = 'classic';
+  try{ saved = localStorage.getItem(KEY) || 'classic'; }catch(e){}
+  apply(saved);
+})();
+
 /* ---------- Лёгкий снежок ---------- */
 (function(){
   if(window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
