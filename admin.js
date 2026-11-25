@@ -922,7 +922,14 @@
         if (c.specs && c.specs.length) c.specs = c.specs.map(fix);
       });
     }
-    /* 2. тексты прямо в документе */
+    /* 2. исходные тексты (базы) — иначе старые вернут «5 лет» обратно */
+    if (typeof BASES === 'object' && BASES) {
+      for (var bk in BASES) {
+        if (typeof BASES[bk] === 'string') BASES[bk] = fix(BASES[bk]);
+      }
+      saveBases();
+    }
+    /* 3. тексты прямо в документе */
     ['гарантия 5 лет|гарантия от 3 лет', 'Гарантия 5 лет|Гарантия от 3 лет', '5 лет|от 3 лет'].forEach(function (p) {
       var a = p.split('|');
       replaceAllTextNodes(a[0], a[1]);
