@@ -949,6 +949,7 @@
     if (!D.blocks.order) D.blocks.order = BLOCKS.filter(function (b) { return !b.noReorder; }).map(function (b) { return b.s; });
 
     applySettings();
+    migrateGuarantee();
     applyBlocks();
     prepareFaqTexts();
     renderCards();
