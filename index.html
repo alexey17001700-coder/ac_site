@@ -237,7 +237,9 @@
   .card-top .unit.has-photo img{
     width:100%;height:100%;object-fit:cover;object-position:center;display:block;
   }
-  .card-top .unit.has-photo::marker{content:""}
+  .card-top .unit.has-photo{z-index:0}
+  .card-top .brand-badge{z-index:3}
+  .card-top .snow{z-index:2}
   .card-top:has(.unit.has-photo) .snow{opacity:.35}
   .card-top .snow{position:absolute;font-size:22px;opacity:.55;animation:spin 12s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
