@@ -934,7 +934,7 @@
       var a = p.split('|');
       replaceAllTextNodes(a[0], a[1]);
     });
-    /* 3. заголовок вкладки */
+    /* 4. заголовок вкладки */
     if (document.title && document.title.indexOf('5 лет') >= 0) document.title = fix(document.title);
     saveData();
   }
