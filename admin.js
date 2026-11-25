@@ -582,6 +582,7 @@
       if (a === 'up' && i > 0) { var t1 = D.cards[i - 1]; D.cards[i - 1] = D.cards[i]; D.cards[i] = t1; }
       else if (a === 'down' && i < D.cards.length - 1) { var t2 = D.cards[i + 1]; D.cards[i + 1] = D.cards[i]; D.cards[i] = t2; }
       else if (a === 'edit') { openCard(u); return; }
+      else if (a === 'photo') { openCard(u, true); return; }
       else if (a === 'dup') {
         var cp = JSON.parse(JSON.stringify(D.cards[i])); cp.uid = uid();
         D.cards.splice(i + 1, 0, cp);
