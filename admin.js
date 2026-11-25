@@ -179,11 +179,14 @@
     });
   }
   function cardHTML(c) {
+    var ph = c.photo ? String(c.photo) : '';
     return '<div class="card reveal" data-uid="' + esc(c.uid) + '"' + (c.hidden ? ' data-hidden="1"' : '') + '>' +
       '<div class="card-top">' +
         '<span class="brand-badge">' + esc(c.brand) + '</span>' +
         '<span class="snow s1">❄</span><span class="snow s2">❄</span>' +
-        '<div class="unit"></div>' +
+        '<div class="unit' + (ph ? ' has-photo' : '') + '">' +
+          (ph ? '<img src="' + esc(ph) + '" alt="' + esc(c.title || 'Сплит-система') + '" loading="lazy">' : '') +
+        '</div>' +
       '</div>' +
       '<div class="card-body">' +
         '<h3>' + esc(c.title) + '</h3>' +
