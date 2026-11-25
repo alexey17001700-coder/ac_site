@@ -693,7 +693,7 @@
     var adding = !u;
     var c;
     if (adding) {
-      c = { uid: uid(), brand: 'Новый бренд', title: 'Новая модель', specs: ['До 25 м² · 09 BTU', 'Инвертор', 'Wi-Fi управление'], price: '49 900 ₽', note: 'с установкой', hidden: false };
+      c = { uid: uid(), brand: 'Новый бренд', title: 'Новая модель', specs: ['До 25 м² · 09 BTU', 'Инвертор', 'Wi-Fi управление'], price: '49 900 ₽', note: 'с установкой', photo: '', hidden: false };
     } else {
       var i = cardIndex(u);
       if (i < 0) return;
