@@ -735,6 +735,14 @@
         : '<span class="ac-photo-empty">Фото не выбрано — пока показывается нарисованный блок</span>';
     }
     updPrev();
+    if (focusPhoto && prev) {
+      setTimeout(function () {
+        var box = prev.closest ? prev.closest('.ac-box') : null;
+        if (box) box.scrollTop = Math.max(0, prev.offsetTop - 90);
+        prev.classList.add('ac-flash');
+        setTimeout(function () { prev.classList.remove('ac-flash'); }, 1200);
+      }, 120);
+    }
     var fileInp = q('#cFile', w);
     if (fileInp) fileInp.addEventListener('change', function () {
       var f = fileInp.files && fileInp.files[0];
