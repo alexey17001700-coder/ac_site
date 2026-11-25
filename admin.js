@@ -165,6 +165,7 @@
         if (cs) cs.parentNode.removeChild(cs);
         price = clean(clone.textContent);
       }
+      var im = c.querySelector('.card-top .unit img');
       return {
         uid: c.getAttribute('data-uid') || ('c' + i),
         brand: txtOf(c.querySelector('.brand-badge')),
@@ -172,6 +173,7 @@
         specs: qa('.card-specs li', c).map(txtOf),
         price: price,
         note: note || 'с установкой',
+        photo: im ? (im.getAttribute('src') || '') : '',
         hidden: c.getAttribute('data-hidden') === '1'
       };
     });
