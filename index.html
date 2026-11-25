@@ -392,6 +392,21 @@
   .card-price .p{font-size:23px;font-weight:800;color:var(--deep);letter-spacing:-.6px}
   .card-price .p small{font-size:12px;font-weight:600;color:var(--muted);display:block;letter-spacing:0}
   .card-price .btn{padding:10px 16px;font-size:13px;border-radius:11px}
+  /* --- Читаемая надпись на кнопках «Заказать» --- */
+  .card-price .btn{
+    font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;
+    font-weight:900;font-size:14.5px;letter-spacing:.4px;
+    color:#04301a;
+    text-shadow:0 1px 0 rgba(255,255,255,.95),0 0 10px rgba(255,255,255,.7);
+    padding:12px 20px;border-radius:12px;
+    background:linear-gradient(180deg,rgba(242,254,247,.94) 0%,rgba(196,238,213,.92) 18%,rgba(146,218,175,.92) 50%,rgba(108,200,145,.92) 52%,rgba(170,230,194,.94) 100%);
+    border:1.5px solid rgba(45,130,80,.9);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -2px 4px rgba(20,90,50,.3),0 8px 20px rgba(30,140,80,.3);
+  }
+  .card-price .btn:hover{
+    color:#02220f;
+    background:linear-gradient(180deg,rgba(255,255,255,.98) 0%,rgba(214,246,226,.96) 18%,rgba(163,228,188,.96) 50%,rgba(124,210,158,.96) 52%,rgba(188,238,208,.98) 100%);
+  }
 
   /* ===== CALC ===== */
   .calc{background:linear-gradient(140deg,var(--deep) 0%,var(--deep2) 60%,#0e4d7a 100%);color:#fff;position:relative;overflow:hidden}
