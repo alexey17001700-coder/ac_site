@@ -1289,6 +1289,14 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
       }
       window.open(TG, '_blank');
       ok.textContent = '✓ Открыли Telegram. Заявка скопирована — вставьте её в чат.';
+    }else if(mes === 'viber'){
+      /* Viber тоже не принимает текст в ссылке — копируем заявку в буфер */
+      var vplain = decodeURIComponent(text.replace(/%0A/g, '\n'));
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(vplain).catch(function(){});
+      }
+      window.location.href = 'viber://chat?number=%2B' + PHONE;
+      ok.textContent = '✓ Открыли Viber. Заявка скопирована — вставьте её в чат.';
     }else if(mes === 'call'){
       window.location.href = 'tel:+' + PHONE;
       ok.textContent = '✓ Звоним вам! Если не дозвонились — наберите +7 (921) 263-66-26.';
