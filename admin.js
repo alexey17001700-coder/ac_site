@@ -294,6 +294,15 @@
     if (!D.settings) D.settings = {};
     var d = defaultsSettings();
     for (var k in d) if (D.settings[k] == null || D.settings[k] === '') D.settings[k] = d[k];
+    /* миграция: вычищаем старый тестовый номер из сохранённых настроек */
+    var OLD = ['79991234567', '89991234567', '9991234567'];
+    ['phone', 'whatsapp'].forEach(function (k) {
+      var v = String(D.settings[k] || '').replace(/[^\d]/g, '');
+      if (OLD.indexOf(v) >= 0) D.settings[k] = d[k];
+    });
+    if (String(D.settings.phoneText || '').replace(/[^\d]/g, '').indexOf('9991234567') >= 0) {
+      D.settings.phoneText = d.phoneText;
+    }
     return D.settings;
   }
   function replaceAllTextNodes(from, to) {
