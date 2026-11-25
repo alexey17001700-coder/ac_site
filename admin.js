@@ -764,9 +764,10 @@
       c.brand = val(w, 'cBrand'); c.title = val(w, 'cTitle');
       c.specs = val(w, 'cSpecs').split('\n').map(function (s) { return s.replace(/^[-•\s]+/, '').trim(); }).filter(Boolean);
       c.price = val(w, 'cPrice'); c.note = val(w, 'cNote') || 'с установкой';
+      c.photo = val(w, 'cPhotoUrl') || photoVal || '';
       c.hidden = q('#cHide', w).checked;
       if (adding) D.cards.push(c);
-      saveData(); renderCards(); markCardControls(); w.close(); toast('✓ Сохранено');
+      saveData(); renderCards(); markCardControls(); photoSizeWarn(); w.close(); toast('✓ Сохранено');
     });
   }
 
