@@ -1111,12 +1111,25 @@
           <textarea id="fcomment" placeholder="Например: нужен кондиционер в спальню, второй этаж"></textarea>
         </div>
         <div class="f-group">
-          <label for="fmessenger">Куда отправить заявку?</label>
-          <select id="fmessenger">
-            <option value="whatsapp" selected>WhatsApp</option>
-            <option value="telegram">Telegram</option>
-            <option value="call">Позвоните мне</option>
-          </select>
+          <label>Куда отправить заявку?</label>
+          <div class="app-picker" id="appPicker">
+            <label class="app-opt sel">
+              <input type="radio" name="fmessenger" value="whatsapp" checked>
+              <span class="app-ico wa">💬</span> WhatsApp
+            </label>
+            <label class="app-opt">
+              <input type="radio" name="fmessenger" value="telegram">
+              <span class="app-ico tg">✈️</span> Telegram
+            </label>
+            <label class="app-opt">
+              <input type="radio" name="fmessenger" value="viber">
+              <span class="app-ico vb">📳</span> Viber
+            </label>
+            <label class="app-opt">
+              <input type="radio" name="fmessenger" value="call">
+              <span class="app-ico cl">📞</span> Позвоните мне
+            </label>
+          </div>
         </div>
         <button type="submit" class="btn btn-primary">Отправить заявку</button>
         <a href="https://t.me/I_am_mr_Belov" target="_blank" rel="noopener" class="btn btn-ghost" style="width:100%;margin-top:10px">✈️ Написать в Telegram</a>
