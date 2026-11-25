@@ -459,7 +459,23 @@
       '#acBar button{padding:9px 10px;font-size:12px}',
       '.ac-modal .ac-box h3{font-size:17px}',
       '.ac-ctl,.ac-blk{padding:3px;gap:3px}',
-      '}'
+      '}',
+      /* --- блок фото в карточке модели --- */
+      '.ac-ctl{flex-wrap:wrap;max-width:calc(100% - 16px);justify-content:flex-end}',
+      '.ac-photo{display:grid;gap:10px}',
+      '.ac-photo-prev{height:150px;border-radius:14px;border:1.5px dashed #cfe0ee;background:#f7fbff;',
+      'display:grid;place-items:center;overflow:hidden;transition:box-shadow .3s,border-color .3s}',
+      '.ac-photo-prev img{width:100%;height:100%;object-fit:cover;display:block}',
+      '.ac-photo-prev.ac-flash{border-color:#22c55e;box-shadow:0 0 0 5px rgba(34,197,94,.22)}',
+      '.ac-photo-empty{font-size:12.5px;color:#7d9ab2;text-align:center;padding:0 16px;line-height:1.5}',
+      '.ac-photo-btns{display:flex;gap:8px;flex-wrap:wrap}',
+      '.ac-photo-file{flex:1;min-width:150px;display:flex;align-items:center;justify-content:center;gap:8px;',
+      'padding:11px 14px;border-radius:12px;background:linear-gradient(135deg,#0a84ff,#22d3ee);color:#fff;',
+      'font-size:13.5px;font-weight:700;cursor:pointer;text-align:center}',
+      '.ac-photo-file input{display:none}',
+      '.ac-photo-rm{padding:11px 14px;border-radius:12px;background:#fee2e2;color:#b91c1c;font-weight:700;',
+      'font-size:13.5px;border:0;cursor:pointer;font-family:inherit}',
+      '.ac-photo-hint{margin:0;font-size:12px;color:#7d9ab2;line-height:1.5}'
     ].join('');
     var st = document.createElement('style');
     st.id = 'acStyle';
