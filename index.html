@@ -182,6 +182,89 @@
   .fb2{bottom:10%;right:-4%;animation:hover 7s ease-in-out infinite reverse}
   .fb3{bottom:-2%;left:8%;animation:hover 8s ease-in-out infinite}
 
+  /* ===== ВРЕМЕННАЯ ОБЛОЖКА В СТИЛЕ GTA 6 ===== */
+  .gta-only{display:none}
+  .hero.gta .gta-only{display:block}
+  .hero.gta{
+    background:linear-gradient(180deg,#2b0b4a 0%,#7a1d6b 26%,#e0457b 54%,#ff8a3d 78%,#ffd07a 100%);
+  }
+  .hero.gta::before{background:#ff5fa2;opacity:.5}
+  .hero.gta::after{background:#ffb347;opacity:.45}
+  .hero.gta .gta-sun{
+    position:absolute;left:50%;bottom:10%;width:min(52vw,440px);height:min(52vw,440px);
+    transform:translateX(-50%);border-radius:50%;z-index:1;pointer-events:none;
+    background:radial-gradient(circle,#fff6c2 0%,#ffd166 36%,#ff9f43 60%,rgba(255,120,60,0) 72%);
+    filter:blur(2px);animation:gtaSun 9s ease-in-out infinite;
+  }
+  @keyframes gtaSun{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.06)}}
+  .hero.gta .gta-grid{
+    position:absolute;left:0;right:0;bottom:0;height:40%;z-index:1;pointer-events:none;
+    background:
+      repeating-linear-gradient(90deg,rgba(255,120,200,.38) 0 2px,transparent 2px 64px),
+      repeating-linear-gradient(0deg,rgba(255,120,200,.38) 0 2px,transparent 2px 44px);
+    transform:perspective(320px) rotateX(62deg);transform-origin:bottom;
+    -webkit-mask-image:linear-gradient(to top,#000,transparent);
+    mask-image:linear-gradient(to top,#000,transparent);
+  }
+  .hero.gta .gta-palm{
+    position:absolute;bottom:0;z-index:2;pointer-events:none;
+    font-size:clamp(70px,13vw,160px);line-height:1;
+    filter:drop-shadow(0 0 20px rgba(40,0,30,.45));
+  }
+  .hero.gta .gta-palm.l{left:-14px;transform:scaleX(-1)}
+  .hero.gta .gta-palm.r{right:-14px}
+  .hero.gta .gta-vi{
+    position:absolute;top:16px;right:20px;z-index:5;pointer-events:none;
+    font-size:clamp(30px,5vw,56px);font-weight:900;font-style:italic;color:#fff;
+    -webkit-text-stroke:2px #ff2d78;text-shadow:0 0 24px rgba(255,45,120,.85);
+  }
+  .hero.gta h1{
+    color:#fff;text-transform:uppercase;font-style:italic;font-weight:900;letter-spacing:-2px;
+    text-shadow:0 4px 0 rgba(120,0,80,.5),0 0 28px rgba(255,120,200,.55);
+  }
+  .hero.gta h1 em{
+    background:linear-gradient(100deg,#ffe066,#ff8a3d 55%,#ff3d8b);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    -webkit-text-stroke:1.5px rgba(255,255,255,.9);
+    filter:drop-shadow(0 0 16px rgba(255,140,60,.75));
+  }
+  .hero.gta .hero-sub{color:#ffe9f6;opacity:1;text-shadow:0 2px 12px rgba(60,0,40,.55)}
+  .hero.gta .pill{
+    background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.45);color:#fff;
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  }
+  .hero.gta .stat b{color:#fff;text-shadow:0 2px 12px rgba(60,0,40,.55)}
+  .hero.gta .stat span{color:#ffd9ee}
+  .hero.gta .ac-card{
+    background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.42);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    box-shadow:0 24px 60px rgba(60,0,50,.45);
+  }
+  .hero.gta .ac-body{background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,.1));border-color:rgba(255,255,255,.35)}
+  .hero.gta .ac-body::after{background:repeating-linear-gradient(90deg,rgba(255,255,255,.38) 0 6px,transparent 6px 12px)}
+  .hero.gta .ac-info b{color:#fff}
+  .hero.gta .ac-info span{color:#ffd9ee}
+  .hero.gta .ac-temp{color:#ffe066;text-shadow:0 0 18px rgba(255,200,60,.85)}
+  .hero.gta .float-badge{
+    background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.42);color:#fff;
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  }
+  .hero.gta .btn-ghost{background:rgba(255,255,255,.18);color:#fff;border-color:rgba(255,255,255,.55)}
+  .hero.gta .btn-ghost:hover{background:rgba(255,255,255,.32);color:#fff}
+  /* переключатель обложки */
+  .cover-switch{
+    position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:6px;
+    background:rgba(13,36,56,.86);border:1px solid rgba(255,255,255,.22);border-radius:100px;
+    padding:6px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+  .cover-switch button{padding:8px 14px;border-radius:100px;font-size:12.5px;font-weight:800;color:#cfe6f5;transition:background .2s,color .2s}
+  .cover-switch button.on{background:linear-gradient(135deg,#ff2d78,#ff8a3d);color:#fff}
+  @media(max-width:640px){
+    .cover-switch{right:10px;bottom:10px;padding:5px}
+    .cover-switch button{padding:7px 11px;font-size:11.5px}
+  }
+
   /* ===== ADVANTAGES ===== */
   .adv{padding:0 0 10px;margin-top:-46px;position:relative;z-index:5}
   .adv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
