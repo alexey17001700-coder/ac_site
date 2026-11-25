@@ -883,6 +883,55 @@
     return out;
   }
 
+  /* =========================== МИГРАЦИЯ ГАРАНТИИ =========================== */
+  /* Было «гарантия 5 лет» — должно быть «от 3 лет». Чистим и в HTML, и в сохранённых правках. */
+  function migrateGuarantee() {
+    var PAIRS = [
+      ['гарантия 5 лет', 'гарантия от 3 лет'],
+      ['Гарантия 5 лет', 'Гарантия от 3 лет'],
+      ['ГАРАНТИЯ 5 ЛЕТ', 'ГАРАНТИЯ ОТ 3 ЛЕТ'],
+      ['гарантия 5-ть лет', 'гарантия от 3 лет'],
+      ['гарантии 5 лет', 'гарантии от 3 лет'],
+      ['гарантию 5 лет', 'гарантию от 3 лет'],
+      ['гарантией 5 лет', 'гарантией от 3 лет'],
+      ['5 лет гарантии', 'от 3 лет гарантии'],
+      ['5 лет на', 'от 3 лет на'],
+      ['5 лет', 'от 3 лет']
+    ];
+    function fix(str) {
+      if (!str || str.indexOf('5 лет') < 0) return str;
+      for (var i = 0; i < PAIRS.length; i++) {
+        if (str.indexOf(PAIRS[i][0]) >= 0) str = str.split(PAIRS[i][0]).join(PAIRS[i][1]);
+      }
+      return str;
+    }
+    /* 1. сохранённые правки текста */
+    if (D && D.texts) {
+      for (var k in D.texts) {
+        var rec = D.texts[k];
+        if (!rec) continue;
+        if (typeof rec.t === 'string') rec.t = fix(rec.t);
+        if (typeof rec.b === 'string') rec.b = fix(rec.b);
+      }
+    }
+    if (D && D.cards && D.cards.length) {
+      D.cards.forEach(function (c) {
+        if (!c) return;
+        if (typeof c.title === 'string') c.title = fix(c.title);
+        if (typeof c.note === 'string') c.note = fix(c.note);
+        if (c.specs && c.specs.length) c.specs = c.specs.map(fix);
+      });
+    }
+    /* 2. тексты прямо в документе */
+    ['гарантия 5 лет|гарантия от 3 лет', 'Гарантия 5 лет|Гарантия от 3 лет', '5 лет|от 3 лет'].forEach(function (p) {
+      var a = p.split('|');
+      replaceAllTextNodes(a[0], a[1]);
+    });
+    /* 3. заголовок вкладки */
+    if (document.title && document.title.indexOf('5 лет') >= 0) document.title = fix(document.title);
+    saveData();
+  }
+
   /* =========================== СТАРТ =========================== */
   function init() {
     D = loadData();
