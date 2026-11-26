@@ -998,6 +998,10 @@
       markBlockControls();
       if (editing) markCardControls();
       saveData();
+      /* опубликованные данные могли содержать старое название фирмы — чистим */
+      migrateCompany();
+      applySettings();
+      applyTexts();
     };
     try { xhr.send(); } catch (e) { }
   }
