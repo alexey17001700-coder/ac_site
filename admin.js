@@ -22,6 +22,22 @@
   function hsh(s) { var h = 5381, i = 0; for (; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0; return h.toString(16); }
   function uid() { return 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
 
+  /* ---------------- название фирмы: старое «КлиматПро» → новое «ЭкоКлимат» ---------------- */
+  var LEGACY_COMPANY = /кл[иi]мат[\s\-_]*про/i;
+  function fixCompanyName(s) {
+    if (typeof s !== 'string' || !s) return s;
+    if (!LEGACY_COMPANY.test(s)) return s;
+    return s.replace(/кл[иi]мат[\s\-_]*про/gi, function () { return origCompany || 'ЭкоКлимат'; });
+  }
+  function replaceCompanyInDOM() {
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false), n;
+    while ((n = w.nextNode())) {
+      var p = n.parentNode;
+      if (!p || /^(SCRIPT|STYLE|NOSCRIPT|TEXTAREA|INPUT)$/.test(p.nodeName)) continue;
+      if (n.nodeValue && LEGACY_COMPANY.test(n.nodeValue)) n.nodeValue = fixCompanyName(n.nodeValue);
+    }
+  }
+
   /* ---------------- фото: чтение и сжатие ---------------- */
   var PHOTO_MAXW = 900;
   function readPhoto(file, cb) {
