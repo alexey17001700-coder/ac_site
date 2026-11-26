@@ -346,7 +346,8 @@
         if (lg.childNodes[i].nodeType === 3 && clean(lg.childNodes[i].nodeValue)) { t = clean(lg.childNodes[i].nodeValue); break; }
       }
     }
-    origCompany = t || 'ЭкоКлимат';
+    origCompany = t || BRAND;
+    if (LEGACY_COMPANY.test(origCompany)) origCompany = BRAND;
     origTitle = document.title;
   }
   function defaultsSettings() {
