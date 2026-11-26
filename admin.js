@@ -1083,7 +1083,7 @@
     }
     /* 4. тексты прямо в документе + заголовок вкладки */
     OLD.forEach(function (o) { replaceAllTextNodes(o, NEW); });
-    if (document.title && OLD.indexOf('КлиматПро') >= 0) document.title = fix(document.title);
+    if (document.title && document.title.indexOf('КлиматПро') >= 0) document.title = fix(document.title);
     saveData();
   }
 
