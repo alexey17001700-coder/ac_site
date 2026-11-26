@@ -1045,6 +1045,48 @@
     saveData();
   }
 
+  /* =========================== МИГРАЦИЯ НАЗВАНИЯ ФИРМЫ =========================== */
+  /* Раньше фирма называлась «КлиматПро», теперь — «ЭкоКлимат». Чистим старые
+     сохранённые настройки и тексты, иначе старое имя возвращается на страницу. */
+  function migrateCompany() {
+    var NEW = origCompany || 'ЭкоКлимат';
+    var OLD = ['КлиматПро', 'Климат-Про', 'Климат Про', 'КЛИМАТПРО', 'КлиматПРО'];
+    function fix(s) {
+      if (typeof s !== 'string' || !s) return s;
+      for (var i = 0; i < OLD.length; i++) {
+        if (s.indexOf(OLD[i]) >= 0) s = s.split(OLD[i]).join(NEW);
+      }
+      return s;
+    }
+    /* 1. сохранённое название фирмы в настройках */
+    if (D && D.settings && typeof D.settings.company === 'string') {
+      if (OLD.indexOf(D.settings.company) >= 0) D.settings.company = NEW;
+    }
+    /* 2. сохранённые правки текстов */
+    if (D && D.texts) {
+      for (var k in D.texts) {
+        var rec = D.texts[k];
+        if (!rec) continue;
+        rec.t = fix(rec.t);
+        rec.b = fix(rec.b);
+      }
+    }
+    /* 3. исходные тексты (базы) — иначе старое имя вернётся обратно */
+    if (typeof BASES === 'object' && BASES) {
+      var changed = false;
+      for (var bk in BASES) {
+        if (typeof BASES[bk] !== 'string') continue;
+        var nv = fix(BASES[bk]);
+        if (nv !== BASES[bk]) { BASES[bk] = nv; changed = true; }
+      }
+      if (changed) saveBases();
+    }
+    /* 4. тексты прямо в документе + заголовок вкладки */
+    OLD.forEach(function (o) { replaceAllTextNodes(o, NEW); });
+    if (document.title && OLD.indexOf('КлиматПро') >= 0) document.title = fix(document.title);
+    saveData();
+  }
+
   /* =========================== СТАРТ =========================== */
   function init() {
     D = loadData();
