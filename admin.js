@@ -1069,21 +1069,11 @@
      сохранённые настройки и тексты, иначе старое имя возвращается на страницу. */
   function migrateCompany() {
     var NEW = origCompany || 'ЭкоКлимат';
-    var OLD = ['КлиматПро', 'Климат-Про', 'Климат Про', 'КЛИМАТПРО', 'КлиматПРО'];
-    function fix(s) {
-      if (typeof s !== 'string' || !s) return s;
-      for (var i = 0; i < OLD.length; i++) {
-        if (s.indexOf(OLD[i]) >= 0) s = s.split(OLD[i]).join(NEW);
-      }
-      return s;
-    }
-    /* 1. сохранённое название фирмы в настройках */
-    if (D && D.settings && typeof D.settings.company === 'string') {
-      if (OLD.indexOf(D.settings.company) >= 0) D.settings.company = NEW;
-    }
-    /* 1а. сохранённый заголовок вкладки */
-    if (D && D.settings && typeof D.settings.title === 'string') {
-      D.settings.title = fix(D.settings.title);
+    function fix(s) { return fixCompanyName(s); }
+    /* 1. сохранённое название фирмы и заголовок вкладки */
+    if (D && D.settings) {
+      if (LEGACY_COMPANY.test(String(D.settings.company || ''))) D.settings.company = NEW;
+      if (typeof D.settings.title === 'string') D.settings.title = fix(D.settings.title);
     }
     /* 2. сохранённые правки текстов */
     if (D && D.texts) {
@@ -1093,6 +1083,16 @@
         rec.t = fix(rec.t);
         rec.b = fix(rec.b);
       }
+    }
+    /* 2а. каталог: бренды, названия, характеристики */
+    if (D && D.cards && D.cards.length) {
+      D.cards.forEach(function (c) {
+        if (!c) return;
+        c.brand = fix(c.brand);
+        c.title = fix(c.title);
+        c.note = fix(c.note);
+        if (c.specs && c.specs.length) c.specs = c.specs.map(fix);
+      });
     }
     /* 3. исходные тексты (базы) — иначе старое имя вернётся обратно */
     if (typeof BASES === 'object' && BASES) {
@@ -1105,8 +1105,8 @@
       if (changed) saveBases();
     }
     /* 4. тексты прямо в документе + заголовок вкладки */
-    OLD.forEach(function (o) { replaceAllTextNodes(o, NEW); });
-    if (document.title && document.title.indexOf('КлиматПро') >= 0) document.title = fix(document.title);
+    replaceCompanyInDOM();
+    if (document.title) document.title = fix(document.title);
     saveData();
   }
 
