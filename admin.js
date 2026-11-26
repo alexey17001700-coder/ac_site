@@ -357,6 +357,9 @@
     if (String(D.settings.phoneText || '').replace(/[^\d]/g, '').indexOf('9991234567') >= 0) {
       D.settings.phoneText = d.phoneText;
     }
+    /* защита: старое название фирмы не должно вернуться на страницу */
+    if (LEGACY_COMPANY.test(String(D.settings.company || ''))) D.settings.company = origCompany || 'ЭкоКлимат';
+    if (typeof D.settings.title === 'string') D.settings.title = fixCompanyName(D.settings.title);
     return D.settings;
   }
   function replaceAllTextNodes(from, to) {
