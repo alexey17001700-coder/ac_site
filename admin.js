@@ -1170,6 +1170,11 @@
       if (sessionOK()) enterEdit(); else openLogin();
     }
 
+    /* внешний вызов: перепроверить и починить название фирмы (используется переключателем обложки) */
+    window.ACSITE_FIX_BRAND = function () {
+      try { migrateCompany(); applySettings(); } catch (e) { }
+    };
+
     fetchRemote();
   }
 
