@@ -1062,6 +1062,10 @@
     if (D && D.settings && typeof D.settings.company === 'string') {
       if (OLD.indexOf(D.settings.company) >= 0) D.settings.company = NEW;
     }
+    /* 1а. сохранённый заголовок вкладки */
+    if (D && D.settings && typeof D.settings.title === 'string') {
+      D.settings.title = fix(D.settings.title);
+    }
     /* 2. сохранённые правки текстов */
     if (D && D.texts) {
       for (var k in D.texts) {
