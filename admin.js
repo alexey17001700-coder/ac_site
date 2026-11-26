@@ -309,7 +309,7 @@
         if (lg.childNodes[i].nodeType === 3 && clean(lg.childNodes[i].nodeValue)) { t = clean(lg.childNodes[i].nodeValue); break; }
       }
     }
-    origCompany = t || 'КлиматПро';
+    origCompany = t || 'ЭкоКлимат';
     origTitle = document.title;
   }
   function defaultsSettings() {
