@@ -1054,6 +1054,7 @@
     if (!D.cards) D.cards = parseCards();
     if (!D.blocks.order) D.blocks.order = BLOCKS.filter(function (b) { return !b.noReorder; }).map(function (b) { return b.s; });
 
+    migrateCompany();
     applySettings();
     migrateGuarantee();
     applyBlocks();
