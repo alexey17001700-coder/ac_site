@@ -41,6 +41,23 @@
       if (n.nodeValue && LEGACY_COMPANY.test(n.nodeValue)) n.nodeValue = fixCompanyName(n.nodeValue);
     }
   }
+  /* Жёстко ставим правильное имя в логотип (шапка + футер) — на случай старых правок в браузере */
+  function forceBrandInLogo() {
+    var name = brandTarget();
+    var lg = q('.logo > span:last-child');
+    if (lg) {
+      for (var i = 0; i < lg.childNodes.length; i++) {
+        var n = lg.childNodes[i];
+        if (n.nodeType === 3 && clean(n.nodeValue)) {
+          if (clean(n.nodeValue) !== name) n.nodeValue = name;
+          break;
+        }
+      }
+    }
+    qa('.foot-logo .logo-name').forEach(function (el) {
+      if (clean(el.textContent) !== name) el.textContent = name;
+    });
+  }
 
   /* ---------------- фото: чтение и сжатие ---------------- */
   var PHOTO_MAXW = 900;
