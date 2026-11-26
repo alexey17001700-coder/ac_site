@@ -24,10 +24,14 @@
 
   /* ---------------- название фирмы: старое «КлиматПро» → новое «ЭкоКлимат» ---------------- */
   var LEGACY_COMPANY = /кл[иi]мат[\s\-_]*про/i;
+  var BRAND = 'ЭкоКлимат';
+  function brandTarget() {
+    return (origCompany && !LEGACY_COMPANY.test(origCompany)) ? origCompany : BRAND;
+  }
   function fixCompanyName(s) {
     if (typeof s !== 'string' || !s) return s;
     if (!LEGACY_COMPANY.test(s)) return s;
-    return s.replace(/кл[иi]мат[\s\-_]*про/gi, function () { return origCompany || 'ЭкоКлимат'; });
+    return s.replace(/кл[иi]мат[\s\-_]*про/gi, function () { return brandTarget(); });
   }
   function replaceCompanyInDOM() {
     var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false), n;
