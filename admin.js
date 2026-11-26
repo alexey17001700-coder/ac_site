@@ -1131,6 +1131,7 @@
     }
     /* 4. тексты прямо в документе + заголовок вкладки */
     replaceCompanyInDOM();
+    forceBrandInLogo();
     if (document.title) document.title = fix(document.title);
     saveData();
   }
