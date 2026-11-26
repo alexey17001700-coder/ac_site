@@ -1589,6 +1589,8 @@ document.querySelectorAll('.faq-q').forEach(function(btn){
     var gta = (mode === 'gta');
     hero.classList.toggle('gta', gta);
     document.body.classList.toggle('cover-gta', gta);
+    /* страховка: название фирмы всегда «ЭкоКлимат», даже если в браузере остались старые правки */
+    if(window.ACSITE_FIX_BRAND){ try{ window.ACSITE_FIX_BRAND(); }catch(err){} }
     box.querySelectorAll('button').forEach(function(b){
       b.classList.toggle('on', b.getAttribute('data-cover') === mode);
     });
