@@ -1243,6 +1243,44 @@
     saveData();
   }
 
+  /* =========================== МИГРАЦИЯ МОДЕЛЕЙ =========================== */
+  /* Модель «Green Breeze» переименована в «Грин Триумф». Чистим старое имя
+     в сохранённых правках браузера, иначе оно возвращается на страницу. */
+  function migrateModels() {
+    var OLD = 'Green Breeze', NEW = 'Грин Триумф';
+    function fix(s) {
+      if (typeof s !== 'string' || s.indexOf(OLD) < 0) return s;
+      return s.split(OLD).join(NEW);
+    }
+    if (D && D.cards && D.cards.length) {
+      D.cards.forEach(function (c) {
+        if (!c) return;
+        c.title = fix(c.title);
+        c.note = fix(c.note);
+        if (c.specs && c.specs.length) c.specs = c.specs.map(fix);
+      });
+    }
+    if (D && D.texts) {
+      for (var k in D.texts) {
+        var rec = D.texts[k];
+        if (!rec) continue;
+        if (typeof rec.t === 'string') rec.t = fix(rec.t);
+        if (typeof rec.b === 'string') rec.b = fix(rec.b);
+      }
+    }
+    if (typeof BASES === 'object' && BASES) {
+      var changed = false;
+      for (var bk in BASES) {
+        if (typeof BASES[bk] !== 'string') continue;
+        var nv = fix(BASES[bk]);
+        if (nv !== BASES[bk]) { BASES[bk] = nv; changed = true; }
+      }
+      if (changed) saveBases();
+    }
+    replaceAllTextNodes(OLD, NEW);
+    saveData();
+  }
+
   /* =========================== СТАРТ =========================== */
   function init() {
     D = loadData();
