@@ -1244,11 +1244,12 @@
     loadBases();
     injectCSS();
     capOriginals();
-    if (!D.cards) D.cards = parseCards();
+    /* Каталог берём из index.html, пока модели не правили вручную в админке.
+       Так новые модели видны всегда, даже если в браузере остался старый каталог. */
+    if (!D.cards || !D.cardsEdited) { D.cards = parseCards(); D.cardsEdited = false; }
     if (!D.blocks.order) D.blocks.order = BLOCKS.filter(function (b) { return !b.noReorder; }).map(function (b) { return b.s; });
 
     migrateCompany();
-    forceCatalog();
     migrateBrands();
     applySettings();
     migrateGuarantee();
