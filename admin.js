@@ -587,7 +587,13 @@
       '.ac-phctl-file,.ac-phctl button{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.14);',
       'color:#fff;font-size:15px;display:grid;place-items:center;cursor:pointer;border:0;padding:0}',
       '.ac-phctl-file:hover,.ac-phctl button:hover{background:#0a84ff}',
-      '.ac-phctl-file input{display:none}'
+      '.ac-phctl-file input{display:none}',
+      /* --- кнопка фото прямо на картинке модели (только в режиме админа) --- */
+      '.ac-cardphoto{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);z-index:20;',
+      'padding:9px 14px;border-radius:12px;background:rgba(6,42,69,.92);color:#fff;font-size:12.5px;',
+      'font-weight:800;border:1.5px dashed rgba(255,255,255,.55);cursor:pointer;font-family:inherit;',
+      'white-space:nowrap;box-shadow:0 8px 22px rgba(0,0,0,.3)}',
+      '.ac-cardphoto:hover{background:#0a84ff;border-style:solid}'
     ].join('');
     var st = document.createElement('style');
     st.id = 'acStyle';
