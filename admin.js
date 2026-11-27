@@ -1182,6 +1182,43 @@
     saveData();
   }
 
+  /* =========================== КАТАЛОГ: НОВЫЕ БРЕНДЫ =========================== */
+  /* Продаём только Haier, Green и Kentatsu. Если в браузере сохранился старый
+     каталог (Ballu, Hisense, Electrolux, LG, Mitsubishi, Daikin) — заменяем его
+     на новый список моделей. Фото, уже поставленные вручную, сохраняем. */
+  var CATALOG_VERSION = 3;
+  var NEW_CATALOG = [
+    { brand: 'Haier', title: 'Haier Lightera — спальня', price: '34 900 ₽',
+      specs: ['До 20 м² · 07 BTU', 'Инвертор, тихий режим 21 дБ', 'Класс энергоэффективности A++'] },
+    { brand: 'Haier', title: 'Haier Flexis — гостиная', price: '44 900 ₽',
+      specs: ['До 25 м² · 09 BTU', 'Инвертор, обогрев до −25 °C', 'Wi-Fi управление со смартфона'] },
+    { brand: 'Green', title: 'Green Breeze — студия', price: '46 900 ₽',
+      specs: ['До 35 м² · 12 BTU', 'Инвертор, самоочистка блока', 'Фильтр от пыли и аллергенов'] },
+    { brand: 'Green', title: 'Green Energy — офис', price: '62 900 ₽',
+      specs: ['До 50 м² · 18 BTU', 'Инвертор, экономия до 60%', 'Работа на обогрев зимой'] },
+    { brand: 'Kentatsu', title: 'Kentatsu Nobu — премиум', price: '69 900 ₽',
+      specs: ['До 25 м² · 09 BTU', 'Тишина 19 дБ, надёжный компрессор', 'Датчик присутствия человека'] },
+    { brand: 'Kentatsu', title: 'Kentatsu Titan — флагман', price: '84 900 ₽',
+      specs: ['До 35 м² · 12 BTU', 'Инвертор, работа до −25 °C', 'Фильтр с ионами серебра'] }
+  ];
+  function forceCatalog(force) {
+    if (!D) return;
+    if (!force && D.catV === CATALOG_VERSION) return;
+    var old = (D.cards || []).slice();
+    D.cards = NEW_CATALOG.map(function (m, i) {
+      var prev = old[i];
+      return {
+        uid: (prev && prev.uid) ? prev.uid : uid(),
+        brand: m.brand, title: m.title, specs: m.specs.slice(),
+        price: m.price, note: 'с установкой',
+        photo: (prev && prev.photo) ? prev.photo : '',
+        hidden: false
+      };
+    });
+    D.catV = CATALOG_VERSION;
+    saveData();
+  }
+
   /* =========================== СТАРТ =========================== */
   function init() {
     D = loadData();
