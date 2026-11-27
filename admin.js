@@ -154,13 +154,24 @@
     return BLOCKS.filter(function (b) { return !b.noReorder; }).map(function (b) { return b.s; });
   }
   function applyBlocks() {
-    var m = blockEls(), footer = q('footer'), seen = {};
-    if (footer && footer.parentNode) {
-      blockOrder().concat(BLOCKS.map(function (b) { return b.s; })).forEach(function (s) {
+    var m = blockEls(), seen = {};
+    var order = blockOrder().concat(BLOCKS.map(function (b) { return b.s; }));
+    /* Ставим блоки в нужном порядке НА МЕСТЕ первого блока, а не в конец страницы.
+       Раньше все блоки уезжали перед подвалом — из-за этого герой и каталог
+       оказывались ниже блоков «Фото» и «Портфолио». */
+    var first = null, i;
+    for (i = 0; i < order.length; i++) {
+      if (order[i] !== 'footer' && m[order[i]]) { first = m[order[i]]; break; }
+    }
+    if (first && first.parentNode) {
+      var anchor = document.createComment('ac-blocks');
+      first.parentNode.insertBefore(anchor, first);
+      order.forEach(function (s) {
         if (seen[s] || !m[s] || s === 'footer') return;
         seen[s] = 1;
-        footer.parentNode.insertBefore(m[s], footer);
+        anchor.parentNode.insertBefore(m[s], anchor);
       });
+      anchor.parentNode.removeChild(anchor);
     }
     BLOCKS.forEach(function (b) {
       var el = m[b.s]; if (!el) return;
