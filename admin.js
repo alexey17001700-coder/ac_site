@@ -119,6 +119,7 @@
           d.blocks = o.blocks || d.blocks;
           d.settings = o.settings || {};
           d.catV = o.catV || 0;
+          d.cardsEdited = !!o.cardsEdited;
         }
       }
     } catch (e) { }
