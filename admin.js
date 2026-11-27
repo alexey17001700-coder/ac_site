@@ -105,7 +105,7 @@
 
   /* =========================== ДАННЫЕ =========================== */
   function emptyData() {
-    return { v: 1, texts: {}, cards: null, blocks: { order: null, hidden: {} }, settings: {} };
+    return { v: 1, texts: {}, cards: null, photos: {}, blocks: { order: null, hidden: {} }, settings: {} };
   }
   function loadData() {
     var d = emptyData();
