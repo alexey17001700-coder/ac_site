@@ -1369,6 +1369,7 @@
     collectItems();
     captureBases();
     applyTexts();
+    applySectionPhotos();
 
     var btn = document.createElement('button');
     btn.id = 'acAdminBtn'; btn.type = 'button';
