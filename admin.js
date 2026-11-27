@@ -630,7 +630,7 @@
     if (a === 'cards') { openCard(null); return; }
     if (a === 'catreload') {
       if (!confirm('Вернуть каталог к 6 моделям Haier, Green и Kentatsu? Свои добавленные модели будут заменены (фото сохранятся).')) return;
-      forceCatalog(true); renderCards(); markCardControls(); toast('✓ Каталог обновлён: Haier, Green, Kentatsu');
+      forceCatalog(true); D.cardsEdited = true; saveData(); renderCards(); markCardControls(); toast('✓ Каталог обновлён: Haier, Green, Kentatsu');
       return;
     }
     if (a === 'set') { openSettings(); return; }
