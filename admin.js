@@ -1137,6 +1137,50 @@
     saveData();
   }
 
+  /* =========================== МИГРАЦИЯ БРЕНДОВ =========================== */
+  /* Раньше в каталоге были Ballu, Hisense, Electrolux, LG, Mitsubishi, Daikin.
+     Теперь продаём Haier, Green и Kentatsu. Чистим старые названия в сохранённых
+     правках браузера, иначе старые модели возвращаются на страницу. */
+  function migrateBrands() {
+    var MAP = [
+      ['Ballu', 'Haier'], ['BSW-07', 'Lightera'],
+      ['Hisense', 'Haier'], ['AS-09', 'Flexis'],
+      ['Electrolux', 'Green'], ['EACS-12', 'Breeze'],
+      ['LG', 'Green'], ['Dual Inverter', 'Energy'],
+      ['Mitsubishi', 'Kentatsu'], ['MSZ', 'Nobu'],
+      ['Daikin', 'Kentatsu'], ['FTXB', 'Titan']
+    ];
+    function fix(s) {
+      if (typeof s !== 'string' || !s) return s;
+      for (var i = 0; i < MAP.length; i++) {
+        if (s.indexOf(MAP[i][0]) >= 0) s = s.split(MAP[i][0]).join(MAP[i][1]);
+      }
+      return s;
+    }
+    if (D && D.cards && D.cards.length) {
+      D.cards.forEach(function (c) {
+        if (!c) return;
+        c.brand = fix(c.brand);
+        c.title = fix(c.title);
+        c.note = fix(c.note);
+        if (c.specs && c.specs.length) c.specs = c.specs.map(fix);
+      });
+    }
+    if (D && D.texts) {
+      for (var k in D.texts) {
+        var rec = D.texts[k];
+        if (!rec) continue;
+        if (typeof rec.t === 'string') rec.t = fix(rec.t);
+        if (typeof rec.b === 'string') rec.b = fix(rec.b);
+      }
+    }
+    if (typeof BASES === 'object' && BASES) {
+      for (var bk in BASES) if (typeof BASES[bk] === 'string') BASES[bk] = fix(BASES[bk]);
+      saveBases();
+    }
+    saveData();
+  }
+
   /* =========================== СТАРТ =========================== */
   function init() {
     D = loadData();
