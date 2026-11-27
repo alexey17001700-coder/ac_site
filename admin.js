@@ -1051,6 +1051,7 @@
           D.cards = (o.cards && o.cards.length) ? o.cards : null;
           D.cardsEdited = !!(o.cards && o.cards.length);
           D.blocks = o.blocks || { order: null, hidden: {} };
+          D.photos = o.photos || {};
           D.settings = o.settings || {};
           saveData(); saveBases();
           location.reload();
