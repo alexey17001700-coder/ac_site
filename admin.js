@@ -120,6 +120,7 @@
           d.settings = o.settings || {};
           d.catV = o.catV || 0;
           d.cardsEdited = !!o.cardsEdited;
+          d.photos = o.photos || {};
         }
       }
     } catch (e) { }
