@@ -844,6 +844,7 @@
       c.photo = val(w, 'cPhotoUrl') || photoVal || '';
       c.hidden = q('#cHide', w).checked;
       if (adding) D.cards.push(c);
+      D.cardsEdited = true;
       saveData(); renderCards(); markCardControls(); photoSizeWarn(); w.close(); toast('✓ Сохранено');
     });
   }
