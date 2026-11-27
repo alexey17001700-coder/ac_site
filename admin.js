@@ -118,6 +118,7 @@
           d.cards = (o.cards && o.cards.length) ? o.cards : null;
           d.blocks = o.blocks || d.blocks;
           d.settings = o.settings || {};
+          d.catV = o.catV || 0;
         }
       }
     } catch (e) { }
