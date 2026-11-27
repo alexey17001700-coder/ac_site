@@ -1207,9 +1207,21 @@
     { brand: 'Kentatsu', title: 'Kentatsu Titan — флагман', price: '84 900 ₽',
       specs: ['До 35 м² · 12 BTU', 'Инвертор, работа до −25 °C', 'Фильтр с ионами серебра'] }
   ];
+  var OLD_BRANDS = ['Ballu', 'Hisense', 'Electrolux', 'Mitsubishi', 'Daikin', 'LG', 'BSW-', 'AS-09', 'EACS', 'MSZ', 'FTXB'];
+  function catalogLooksOld() {
+    var list = (D && D.cards) || [];
+    for (var i = 0; i < list.length; i++) {
+      var c = list[i] || {};
+      var s = String(c.brand || '') + ' ' + String(c.title || '');
+      for (var j = 0; j < OLD_BRANDS.length; j++) {
+        if (s.indexOf(OLD_BRANDS[j]) >= 0) return true;
+      }
+    }
+    return false;
+  }
   function forceCatalog(force) {
     if (!D) return;
-    if (!force && D.catV === CATALOG_VERSION) return;
+    if (!force && D.catV === CATALOG_VERSION && !catalogLooksOld()) return;
     var old = (D.cards || []).slice();
     D.cards = NEW_CATALOG.map(function (m, i) {
       var prev = old[i];
