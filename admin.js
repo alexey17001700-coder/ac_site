@@ -249,6 +249,56 @@
     return -1;
   }
 
+  /* =========================== ФОТО РАЗДЕЛОВ (сплит-система, портфолио) =========================== */
+  function sectionFigures() { return qa('figure.ph'); }
+  function figKey(fig, i) {
+    var sec = fig.closest ? fig.closest('section') : null;
+    var sid = sec ? (sec.id || 'sec') : 'sec';
+    return sid + '|' + i;
+  }
+  function applySectionPhotos() {
+    if (!D.photos) D.photos = {};
+    sectionFigures().forEach(function (fig, i) {
+      var k = figKey(fig, i), img = fig.querySelector('img');
+      if (!img) return;
+      var src = D.photos[k];
+      if (src) { img.setAttribute('src', src); fig.classList.remove('no-img'); }
+      else { fig.classList.add('no-img'); }
+    });
+  }
+  function markSectionPhotoControls() {
+    if (!editing) return;
+    qa('.ac-phctl').forEach(function (c) { c.parentNode.removeChild(c); });
+    sectionFigures().forEach(function (fig, i) {
+      var k = figKey(fig, i);
+      var has = !!(D.photos && D.photos[k]);
+      var bar = document.createElement('div');
+      bar.className = 'ac-phctl';
+      bar.setAttribute('data-k', k);
+      bar.innerHTML =
+        '<label class="ac-phctl-file" title="Загрузить фото">📷<input type="file" accept="image/*"></label>' +
+        (has ? '<button type="button" data-a="phrm" title="Убрать фото">🗑</button>' : '');
+      fig.appendChild(bar);
+      var inp = bar.querySelector('input');
+      inp.addEventListener('change', function () {
+        var f = inp.files && inp.files[0];
+        if (!f) return;
+        readPhoto(f, function (data) {
+          D.photos[k] = data; saveData();
+          applySectionPhotos(); markSectionPhotoControls();
+          toast('✓ Фото добавлено');
+        });
+      });
+      bar.addEventListener('click', function (e) {
+        var b = e.target.closest ? e.target.closest('button[data-a="phrm"]') : null;
+        if (!b) return;
+        delete D.photos[k]; saveData();
+        applySectionPhotos(); markSectionPhotoControls();
+        toast('Фото убрано');
+      });
+    });
+  }
+
   /* =========================== ТЕКСТЫ =========================== */
   var ALLOWED = { B: 1, I: 1, EM: 1, STRONG: 1, SMALL: 1, SPAN: 1, A: 1, BR: 1, SUP: 1, U: 1 };
   var EXCL = '.cards,.calc-box,.ac-card,.hero-visual,.logo,.logo-mark,.foot-logo,.nav,.brand-badge,.unit,.snow,.ic,.dot,' +
