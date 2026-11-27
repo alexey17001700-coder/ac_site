@@ -1025,7 +1025,7 @@
   /* =========================== ЭКСПОРТ / ИМПОРТ =========================== */
   function buildExport() {
     saveTexts();
-    var out = { v: 1, texts: D.texts, cards: D.cards, blocks: D.blocks, settings: settings() };
+    var out = { v: 1, texts: D.texts, cards: D.cards, photos: D.photos || {}, blocks: D.blocks, settings: settings() };
     return JSON.stringify(out, null, 2);
   }
   function exportJSON() {
