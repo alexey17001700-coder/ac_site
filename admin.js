@@ -1230,6 +1230,7 @@
 
     migrateCompany();
     migrateBrands();
+    forceCatalog();
     applySettings();
     migrateGuarantee();
     applyBlocks();
