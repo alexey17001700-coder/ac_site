@@ -657,6 +657,7 @@
         if (!confirm('Удалить модель «' + clean(D.cards[i].title) + '»?')) return;
         D.cards.splice(i, 1);
       }
+      D.cardsEdited = true;
       saveData(); renderCards(); markCardControls();
       collapseFAQFix();
       return;
