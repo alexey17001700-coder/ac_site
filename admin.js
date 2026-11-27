@@ -1014,7 +1014,8 @@
       if (!o || typeof o !== 'object') return;
       /* локальные правки важнее опубликованных */
       D.texts = mergeLeft(D.texts, o.texts || {});
-      D.cards = (D.cards && D.cards.length) ? D.cards : ((o.cards && o.cards.length) ? o.cards : null);
+      /* опубликованный каталог применяем, только если в этом браузере модели не правили */
+      if (o.cards && o.cards.length && !D.cardsEdited) D.cards = o.cards;
       if (o.blocks) {
         if (!D.blocks.order && o.blocks.order) D.blocks.order = o.blocks.order;
         var h = {};
