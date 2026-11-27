@@ -1084,6 +1084,7 @@
         D.blocks.hidden = h;
       }
       if (o.settings) for (var sk in o.settings) if (!D.settings[sk]) D.settings[sk] = o.settings[sk];
+      if (o.photos) { D.photos = D.photos || {}; for (var pk in o.photos) if (!D.photos[pk]) D.photos[pk] = o.photos[pk]; }
       applyBlocks();
       renderCards();
       ITEMS.forEach(function (it) {
