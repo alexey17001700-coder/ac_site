@@ -721,6 +721,13 @@
     if (a === 'help') { openHelp(); return; }
     if (a === 'out') { try { localStorage.removeItem(K.sess); } catch (er) { } exitEdit(); return; }
 
+    /* кнопка фото прямо на картинке модели */
+    if (a === 'cardphoto') {
+      var cu = b.getAttribute('data-uid');
+      if (cu) openCard(cu, true);
+      return;
+    }
+
     /* карточки */
     var ctl = b.closest('.ac-ctl');
     if (ctl) {
