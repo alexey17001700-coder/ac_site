@@ -1247,10 +1247,14 @@
   /* Модель «Green Breeze» переименована в «Грин Триумф». Чистим старое имя
      в сохранённых правках браузера, иначе оно возвращается на страницу. */
   function migrateModels() {
-    var OLD = 'Green Breeze', NEW = 'Грин Триумф';
+    var NEW = 'Green Triumph';
+    var MAP = [['Green Breeze', NEW], ['Грин Триумф', NEW], ['Грин триумф', NEW], ['Green Триумф', NEW]];
     function fix(s) {
-      if (typeof s !== 'string' || s.indexOf(OLD) < 0) return s;
-      return s.split(OLD).join(NEW);
+      if (typeof s !== 'string' || !s) return s;
+      for (var i = 0; i < MAP.length; i++) {
+        if (s.indexOf(MAP[i][0]) >= 0) s = s.split(MAP[i][0]).join(MAP[i][1]);
+      }
+      return s;
     }
     if (D && D.cards && D.cards.length) {
       D.cards.forEach(function (c) {
