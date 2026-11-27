@@ -569,7 +569,14 @@
       '.ac-photo-file input{display:none}',
       '.ac-photo-rm{padding:11px 14px;border-radius:12px;background:#fee2e2;color:#b91c1c;font-weight:700;',
       'font-size:13.5px;border:0;cursor:pointer;font-family:inherit}',
-      '.ac-photo-hint{margin:0;font-size:12px;color:#7d9ab2;line-height:1.5}'
+      '.ac-photo-hint{margin:0;font-size:12px;color:#7d9ab2;line-height:1.5}',
+      /* --- фото разделов «Как выглядит сплит» и «Портфолио» --- */
+      '.ac-phctl{position:absolute;top:8px;right:8px;z-index:40;display:flex;gap:4px;background:rgba(6,42,69,.92);',
+      'border-radius:10px;padding:4px;box-shadow:0 6px 18px rgba(0,0,0,.28)}',
+      '.ac-phctl-file,.ac-phctl button{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.14);',
+      'color:#fff;font-size:15px;display:grid;place-items:center;cursor:pointer;border:0;padding:0}',
+      '.ac-phctl-file:hover,.ac-phctl button:hover{background:#0a84ff}',
+      '.ac-phctl-file input{display:none}'
     ].join('');
     var st = document.createElement('style');
     st.id = 'acStyle';
