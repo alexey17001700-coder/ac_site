@@ -604,6 +604,7 @@
     renderCards();
     buildBar();
     markBlockControls();
+    markSectionPhotoControls();
     toast('Режим редактирования включён');
   }
   function exitEdit() {
