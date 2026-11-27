@@ -609,6 +609,7 @@
       '<button type="button" data-a="save">💾 Сохранить</button>' +
       '<button type="button" data-a="pub">🚀 Опубликовать на сайте</button>' +
       '<button type="button" data-a="cards">➕ Добавить модель</button>' +
+      '<button type="button" data-a="catreload">🔄 Каталог Haier/Green/Kentatsu</button>' +
       '<button type="button" data-a="set">⚙ Настройки</button>' +
       '<button type="button" data-a="exp">⬇ Скачать JSON</button>' +
       '<button type="button" data-a="imp">⬆ Загрузить JSON</button>' +
