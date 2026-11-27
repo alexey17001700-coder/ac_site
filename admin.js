@@ -1281,7 +1281,10 @@
       }
       if (changed) saveBases();
     }
-    replaceAllTextNodes(OLD, NEW);
+    replaceAllTextNodes('Green Breeze', NEW);
+    replaceAllTextNodes('Грин Триумф', NEW);
+    replaceAllTextNodes('Грин триумф', NEW);
+    replaceAllTextNodes('Green Триумф', NEW);
     saveData();
   }
 
