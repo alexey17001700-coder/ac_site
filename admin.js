@@ -1192,7 +1192,7 @@
   /* Продаём только Haier, Green и Kentatsu. Если в браузере сохранился старый
      каталог (Ballu, Hisense, Electrolux, LG, Mitsubishi, Daikin) — заменяем его
      на новый список моделей. Фото, уже поставленные вручную, сохраняем. */
-  var CATALOG_VERSION = 3;
+  var CATALOG_VERSION = 4;
   var NEW_CATALOG = [
     { brand: 'Haier', title: 'Haier Lightera — спальня', price: '34 900 ₽',
       specs: ['До 20 м² · 07 BTU', 'Инвертор, тихий режим 21 дБ', 'Класс энергоэффективности A++'] },
