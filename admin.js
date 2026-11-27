@@ -618,7 +618,7 @@
       it.el.removeAttribute('data-k');
     });
     var bar = q('#acBar'); if (bar) bar.parentNode.removeChild(bar);
-    qa('.ac-ctl,.ac-blk').forEach(function (c) { c.parentNode.removeChild(c); });
+    qa('.ac-ctl,.ac-blk,.ac-phctl').forEach(function (c) { c.parentNode.removeChild(c); });
     renderCards();
     toast('Режим просмотра. Правки сохранены локально.');
   }
