@@ -990,6 +990,7 @@
           if (!o || typeof o !== 'object') throw 0;
           D.texts = o.texts || {};
           D.cards = (o.cards && o.cards.length) ? o.cards : null;
+          D.cardsEdited = !!(o.cards && o.cards.length);
           D.blocks = o.blocks || { order: null, hidden: {} };
           D.settings = o.settings || {};
           saveData(); saveBases();
