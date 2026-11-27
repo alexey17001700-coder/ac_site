@@ -1191,6 +1191,7 @@
     if (!D.blocks.order) D.blocks.order = BLOCKS.filter(function (b) { return !b.noReorder; }).map(function (b) { return b.s; });
 
     migrateCompany();
+    migrateBrands();
     applySettings();
     migrateGuarantee();
     applyBlocks();
