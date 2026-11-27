@@ -1158,7 +1158,7 @@
     var MAP = [
       ['Ballu', 'Haier'], ['BSW-07', 'Lightera'],
       ['Hisense', 'Haier'], ['AS-09', 'Flexis'],
-      ['Electrolux', 'Green'], ['EACS-12', 'Триумф'],
+      ['Electrolux', 'Green'], ['EACS-12', 'Triumph'],
       ['LG', 'Green'], ['Dual Inverter', 'Energy'],
       ['Mitsubishi', 'Kentatsu'], ['MSZ', 'Nobu'],
       ['Daikin', 'Kentatsu'], ['FTXB', 'Titan']
