@@ -1294,6 +1294,7 @@
 
     migrateCompany();
     migrateBrands();
+    migrateModels();
     applySettings();
     migrateGuarantee();
     applyBlocks();
