@@ -834,6 +834,7 @@
       if (x === 'del') {
         if (!confirm('Удалить модель?')) return;
         D.cards.splice(cardIndex(c.uid), 1);
+        D.cardsEdited = true;
         saveData(); renderCards(); markCardControls(); w.close(); toast('Модель удалена');
         return;
       }
