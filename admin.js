@@ -650,6 +650,18 @@
         '<button type="button" data-a="del" class="ac-danger" title="Удалить">🗑</button>';
       bar.setAttribute('data-uid', u);
       c.appendChild(bar);
+
+      /* Кнопка «📷 Фото сплит-системы» прямо на месте стандартной картинки модели */
+      var top = c.querySelector('.card-top');
+      if (top && !top.querySelector('.ac-cardphoto')) {
+        var pb = document.createElement('button');
+        pb.type = 'button';
+        pb.className = 'ac-cardphoto';
+        pb.setAttribute('data-a', 'cardphoto');
+        pb.setAttribute('data-uid', u);
+        pb.textContent = '📷 Фото сплит-системы';
+        top.appendChild(pb);
+      }
     });
   }
   function markBlockControls() {
