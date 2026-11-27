@@ -1252,6 +1252,109 @@
   </div>
 </section>
 
+<!-- ================= ФОТО: КАК ВЫГЛЯДИТ СПЛИТ-СИСТЕМА ================= -->
+<style>
+  .photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .ph{position:relative;margin:0;border-radius:18px;overflow:hidden;border:1px solid var(--line);
+      background:linear-gradient(150deg,#eaf6ff,#d3ecff);box-shadow:var(--shadow);aspect-ratio:4/3}
+  .ph img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .5s ease}
+  .ph:hover img{transform:scale(1.06)}
+  .ph figcaption{position:absolute;left:0;right:0;bottom:0;padding:24px 14px 12px;font-size:13px;font-weight:800;
+      color:#fff;background:linear-gradient(to top,rgba(6,42,69,.88),rgba(6,42,69,0));line-height:1.3}
+  .ph figcaption span{display:block;font-size:11.5px;font-weight:600;color:#cfe6f5;margin-top:2px}
+  .ph.no-img img{display:none}
+  .ph .ph-hint{position:absolute;inset:0;display:none;place-items:center;text-align:center;padding:14px;
+      font-size:12.5px;font-weight:700;color:var(--muted);line-height:1.4}
+  .ph.no-img .ph-hint{display:grid}
+  .ph .ph-hint b{display:block;font-size:26px;margin-bottom:6px}
+  .folio{background:linear-gradient(180deg,#f7fcff,#ffffff)}
+  .folio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .folio-grid .ph{aspect-ratio:1/1}
+  .folio-note{text-align:center;font-size:13.5px;color:var(--muted);margin-top:22px}
+  @media(max-width:1100px){.photo-grid{grid-template-columns:repeat(2,1fr)}.folio-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:640px){.photo-grid,.folio-grid{grid-template-columns:1fr}}
+  body.cover-gta .ph{border-color:rgba(255,120,200,.35);background:linear-gradient(150deg,#3a0f5e,#7a1d6b)}
+  body.cover-gta .ph .ph-hint{color:#ffd9ee}
+  body.cover-gta .folio{background:#2b0b4a}
+  body.cover-gta .folio-note{color:#ffd9ee}
+</style>
+
+<section class="photo-sec" id="look">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-tag">Фото</span>
+      <h2>Как выглядит сплит-система</h2>
+      <p>Два блока и трасса между ними: внутренний вешают в комнате, наружный — на фасаде.</p>
+    </div>
+    <div class="photo-grid">
+      <figure class="ph reveal">
+        <img src="photos/vnutrenniy-blok.jpg" alt="Внутренний блок сплит-системы на стене" loading="lazy" onerror="this.parentNode.classList.add('no-img')">
+        <div class="ph-hint"><b>📷</b>Фото: внутренний блок</div>
+        <figcaption>Внутренний блок<span>на стене в комнате</span></figcaption>
+      </figure>
+      <figure class="ph reveal">
+        <img src="photos/naruzhnyy-blok.jpg" alt="Наружный блок кондиционера на фасаде" loading="lazy" onerror="this.parentNode.classList.add('no-img')">
+        <div class="ph-hint"><b>📷</b>Фото: наружный блок</div>
+        <figcaption>Наружный блок<span>на кронштейнах на фасаде</span></figcaption>
+      </figure>
+      <figure class="ph reveal">
+        <img src="photos/trassa.jpg" alt="Трасса кондиционера в штробе и короб" loading="lazy" onerror="this.parentNode.classList.add('no-img')">
+        <div class="ph-hint"><b>📷</b>Фото: трасса</div>
+        <figcaption>Трасса<span>медь в изоляции, кабель, дренаж</span></figcaption>
+      </figure>
+      <figure class="ph reveal">
+        <img src="photos/pult.jpg" alt="Пульт управления кондиционером" loading="lazy" onerror="this.parentNode.classList.add('no-img')">
+        <div class="ph-hint"><b>📷</b>Фото: пульт</div>
+        <figcaption>Пульт и режимы<span>охлаждение, обогрев, осушение</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ПОРТФОЛИО: МОНТАЖИ, ЗАКЛАДНЫЕ ================= -->
+<section class="folio" id="portfolio">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-tag">Портфолио</span>
+      <h2>Наши работы: закладные и монтажи</h2>
+      <p>Небольшая подборка: от закладной под трассу на этапе ремонта до запуска системы.</p>
+    </div>
+    <div class="folio-grid">
+      <figure class="ph reveal">
+        <img src="photos/zakladnaya.jpg" alt="Закладная под трассу кондиционера на этапе ремонта" loading="lazy" onerror="this.parentNode.classList.add('no-img')">
+        <div class="ph-hint"><b>📷</b>Фото: закладная</div>
+        <figcaption>Закладная под трассу<span>до штукатурки и чистовой</span></figcaption>
+      </figure>
+      <figure class="ph reveal">
+        <img src="photos/shtraba.jpg" alt="Штробление стены и прокладка трассы кондиционера" loading="lazy" onerror="this.parentNode.classList.add('no-img')">
+        <div class="ph-hint"><b>📷</b>Фото: штробление</div>
+        <figcaption>Штробление и трасса<span>укладка меди и кабеля</span></figcaption>
+      </figure>
+      <figure class="ph reveal">
+        <img src="photos/vyvod.jpg" alt="Вывод трассы кондиционера из стены" loading="lazy" onerror="this.parentNode.classList.add('no-img')">
+        <div class="ph-hint"><b>📷</b>Фото: вывод трассы</div>
+        <figcaption>Вывод трассы<span>под внутренний блок</span></figcaption>
+      </figure>
+      <figure class="ph reveal">
+        <img src="photos/kronshteyn.jpg" alt="Кронштейны для наружного блока кондиционера" loading="lazy" onerror="this.parentNode.classList.add('no-img')">
+        <div class="ph-hint"><b>📷</b>Фото: кронштейны</div>
+        <figcaption>Кронштейны<span>монтаж наружного блока</span></figcaption>
+      </figure>
+      <figure class="ph reveal">
+        <img src="photos/montazh.jpg" alt="Установленный наружный блок сплит-системы на фасаде" loading="lazy" onerror="this.parentNode.classList.add('no-img')">
+        <div class="ph-hint"><b>📷</b>Фото: монтаж</div>
+        <figcaption>Монтаж на фасаде<span>с отступом для обслуживания</span></figcaption>
+      </figure>
+      <figure class="ph reveal">
+        <img src="photos/puskonaladka.jpg" alt="Пусконаладка и проверка кондиционера" loading="lazy" onerror="this.parentNode.classList.add('no-img')">
+        <div class="ph-hint"><b>📷</b>Фото: пусконаладка</div>
+        <figcaption>Пусконаладка<span>вакуумирование и проверка</span></figcaption>
+      </figure>
+    </div>
+    <p class="folio-note">Хотите посмотреть больше работ — напишите в Telegram <a href="https://t.me/I_am_mr_Belov" target="_blank" rel="noopener">@I_am_mr_Belov</a> или позвоните <a href="tel:+79212636626">+7 (921) 263-66-26</a>.</p>
+  </div>
+</section>
+
 <!-- ================= CONTACT ================= -->
 <section class="contact" id="contact">
   <div class="wrap contact-grid">
